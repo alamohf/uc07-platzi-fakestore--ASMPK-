@@ -1,4 +1,4 @@
-# E-commerce Platzi Fake Store — Agência [NOME]
+# E-commerce Platzi Fake Store — Agência [ASMPK]
 
 Aplicação web de e-commerce integrada à Platzi Fake Store API,
 desenvolvida como projeto final da UC07 - SENAC/RN.
@@ -24,7 +24,7 @@ Em desenvolvimento · Sprint 1 · 13/04/2026
 
 ## Arquitetura
 Aplicação em duas camadas: `/js/api` (chamadas HTTP) e `/js/ui`
-(manipulação de DOM). Ver `/docs/arquitetura.md`.
+(manipulação de DOM).
 
 ## Endpoints implementados
 | Método | Endpoint | Responsável | Status |
