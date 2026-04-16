@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine</title>
-    <link rel="stylesheet" href="">
+    <title>Vitrine - E-commerce Platzi</title>
+    <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-    
+
     <header>
-        <h1>Loja</h1>
+        <h1>E-commerce Platzi</h1>
     </header>
 
     <main>
-        <section aria-label="Vitrine de produtos">
 
-            <header>
-                <h2>Vitrine</h2>
-                <p>Produtos carregados via Platzi Fake Store API</p>
-            </header>
-            
-            <article class="card-produto">
-                <figure>
-                    <img src="https://i.imgur.com/Qphac99.jpeg" alt="Tênis esportivo branco" />"
-                </figure>
-                
-                <div class="corpo">
-                    <span class="categoria">Calçados</span>
-                    <h3>Tênis de Corrida</h3>
-                </div>
-
-                <footer>
-                    <span class="preco">R$200</span>
-                    <button type="button">Adicionar no carrinho</button>
-                </footer>
-            </article>
-
-            <script src="produtos.js"></script>
+        <!-- Filtros -->
+        <section class="filtros">
+            <div class="botoes-filtro">
+            <button class="filtro ativo">Todos</button>
+            <button class="filtro">Novidades</button>
+            <button class="filtro">Promoção</button>
+            </div>
         </section>
+
+        <!-- Vitrine -->
+        <section class="vitrine">
+
+            <header class="vitrine-cabecalho">
+            <h2>Nossos Produtos</h2>
+            <p>Seleção de produtos da Platzi Fake Store API.</p>
+            </header>
+
+            <!-- AQUI os produtos vão aparecer -->
+            <div id="grid-produtos">
+            <p id="status">Carregando produtos...</p>
+            </div>
+
+        </section>
+
     </main>
+    <script src="js/api/config.js"></script>
+    <script src="js/api/produtos.js"></script>
+    <script src="js/ui/vitrine.js"></script>
 </body>
 </html>
