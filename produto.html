@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+
+    <link rel ="stylesheet"href="css/base.css">
+    <link rel="stylesheet"href="css/componentes.css">
+    <link rel="stylesheet"href="css/layout.css">
+</head>
+
+<body>
+  <!-- CABEÇALHO -->
+  <header class="header">
+    <h1>FakeStore</h1>
+    <nav>
+      <a href="index.html">Vitrine</a>
+      <a href="admin.html">Cadastrar Produto</a>
+      <a href="perfil.html">Minha Conta</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- VOLTAR -->
+    <section class="voltar">
+      <a href="index.html">← Voltar à Vitrine</a>
+    </section>
+
+    <!-- DETALHE DO PRODUTO -->
+    <section id="produto-detalhe"
+      class="produto">
+
+      <p class="loading">Carregando produto...</p>
+        
+      <div class="produto-container">
+      <div class="produto-imagem">
+          <img src="foto dos produtos alt="Produto">
+        </div>
+
+        <!-- INFORMAÇÕES -->
+        <div class="produto-info">
+          <h2 class="produto-titulo">Nome do Produto</h2>
+
+          <p class="preco">R$ 00,00</p>
+
+          <p class="descricao">
+            Descrição do produto aqui (estático por enquanto)
+          </p>
+
+          <span class="categoria">Categoria</span>
+
+          <button class="btn-comprar">Comprar</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RELACIONADOS -->
+    <section id="relacionados" class="relacionados">
+
+      <h2>Produtos Relacionados</h2>
+
+      <!-- PRODUTO NÃO ENCONTRADO -->
+      <p class="empty">Nenhum produto encontrado</p>
+
+      <div class="lista-relacionados">
+
+        <!-- CARD EXEMPLO -->
+        <div class="card">
+          <img src="foto dos produtos alt="Produto">
+          <h3>Produto Exemplo</h3>
+          <p class="preco">R$ 00,00</p>
+          <button>Ver Detalhes</button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- JavaScript-->
+  <script src="js/ui/componentes.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
