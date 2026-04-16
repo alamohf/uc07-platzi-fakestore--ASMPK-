@@ -3,44 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine - E-commerce Platzi</title>
+    <title>Vitrine de Produtos</title>
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-
-    <header>
-        <h1>E-commerce Platzi</h1>
+    <header class="cabecalho-principal">
+        <div class="container">
+            <h1>Loja de Produtos</h1>
+            <p>Os melhores produtos para você</p>
+        </div>
     </header>
 
-    <main>
-
-        <!-- Filtros -->
-        <section class="filtros">
-            <div class="botoes-filtro">
-            <button class="filtro ativo">Todos</button>
-            <button class="filtro">Novidades</button>
-            <button class="filtro">Promoção</button>
-            </div>
-        </section>
-
-        <!-- Vitrine -->
+    <main class="container">
         <section class="vitrine">
-
-            <header class="vitrine-cabecalho">
             <h2>Nossos Produtos</h2>
-            <p>Seleção de produtos da Platzi Fake Store API.</p>
-            </header>
 
-            <!-- AQUI os produtos vão aparecer -->
-            <div id="grid-produtos">
-            <p id="status">Carregando produtos...</p>
+            <div id="" class="produtos-grid">
+                <article class="card-produto">
+                    <img src= "https://picsum.photos/300/200?random=1" alt="Produto exemplo" class="imagem-produto">
+                    <div class="info-produto">
+                        <h3 class="titulo-produto">Produto Exemplo 1</h3>
+                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
+
+                        <div class="preco-produto">R$ 99,90</div>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </article>
+
+                 <article class="card-produto">
+                    <img src="https://picsum.photos/300/200?random=2" alt="Produto exemplo" class="imagem-produto">
+                    <div class="info-produto">
+                        <h3 class="titulo-produto">Produto Exemplo 2</h3>
+                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
+                        <div class="preco-produto">R$ 149,90</div>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </article>
             </div>
-
         </section>
-
     </main>
-    <script src="js/api/config.js"></script>
+
+    <footer class="rodapé-principal">
+        <div class="container">
+            <p>2026 Loja de Produtos - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
     <script src="js/api/produtos.js"></script>
-    <script src="js/ui/vitrine.js"></script>
 </body>
 </html>
