@@ -1,0 +1,81 @@
+.login-body {
+  background-color: #f2f7ff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.panel-visual,
+.panel-form {
+  flex: 1;
+}
+
+.panel-visual {
+  flex: 1;
+  background-image:
+    linear-gradient(rgba(0, 106, 53, 0.6), rgba(0, 106, 53, 0.6)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuAo9OwP3em6JhxWUeQhan2p11lRmFMFjf-iH5__SjMtn3NanLhLa0sODaLCpwQHKtCIe9FLlyv8Rx7UDOrBIj0PpE9vffZRaNSvYNmopb35E3Ylg-vfpns5NESgjWL3vpYWqtdHqZDjLZTwlEX2Bh08ggPv992JusmOyePCr29RiFFSqrrmsxePc-jHmnvlHrGQN9d5-XkpsG3OxIWcSTZXaZGxAlCsvdpiX2tDi9XNgqRUDQpTCboYGZz2oDK37UVC36v33eASL3kn");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+  color: #ffffff;
+  position: relative;
+}
+
+.panel-form {
+  padding: 60px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.footer-login {
+  background-color: #21303e;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo h3 {
+  color: #ffffff;
+}
+
+.footer-links {
+  color: rgba(242, 247, 255, 0.6);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}

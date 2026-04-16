@@ -3,26 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Entrar | The Precision Merchant</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
   </head>
-  <body>
-    <header>
-      <h1>The Precision Merchant</h1>
-      <p>PORTAL DE AUTENTICAÇÃO SEGURA</p>
+  <body class="login-body">
+    <header class="header-login">
+      <div class="header-content">
+        <div class="logo">
+          <h1>The Precision Merchant</h1>
+        </div>
+        <span class="portal-tag"><p>PORTAL DE AUTENTICAÇÃO SEGURA</p></span>
+      </div>
     </header>
-    <main>
-      <div>
-        <h2>Bem-vindo de volta</h2>
-        <p>Insira suas credenciais para gerenciar sua loja.</p>
+
+    <main class="main-content">
+      <div class="login-container">
+        <aside class="panel-visual">
+          <div class="visual-content">
+            <h2>Curadoria de Excelência para o Comerciante Moderno.</h2>
+            <p>
+              Acesse seu painel personalizado e gerencie suas coleções com
+              precisão cirúrgica.
+            </p>
+          </div>
+        </aside>
+
+        <section class="panel-form">
+          <div class="form-header">
+            <h1>Bem-vindo de volta</h1>
+            <p>Insira suas credenciais para gerenciar sua loja.</p>
+          </div>
+
+          <form id="login-form">
+            <div class="input-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="nome@email.com" />
+            </div>
+
+            <div class="input-group">
+              <div class="label-wrapper">
+                <label for="password">Senha</label>
+                <a href="#" class="link-secondary">Esqueceu a senha?</a>
+              </div>
+              <input type="password" id="password" placeholder="●●●●●●●●" />
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Manter conectado por 30 dias</label>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Entrar <span>→</span>
+            </button>
+          </form>
+
+          <div class="form-footer">
+            <p>Novo na plataforma? <a href="#">Solicite uma conta</a></p>
+          </div>
+        </section>
       </div>
     </main>
-    <footer>
-      <h3>The Precision Merchant</h3>
-      <a href="">POLÍTICA DE PRIVACIDADE</a>
-      <a href="">TERMOS DE SERVIÇO</a>
-      <a href="">ENVIO</a>
-      <a href="">CONTATO</a>
-      <p>© 2024 The Precision Merchant. Todos os direitos reservados.</p>
+
+    <footer class="footer-login">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>The Precision Merchant</h3>
+        </div>
+        <nav class="footer-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Serviço</a>
+          <a href="#">Envio</a>
+          <a href="#">Contato</a>
+        </nav>
+        <p class="copyright">
+          © 2024 The Precision Merchant. Todos os direitos reservados.
+        </p>
+      </div>
     </footer>
   </body>
 </html>
