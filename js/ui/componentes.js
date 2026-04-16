@@ -1,4 +1,6 @@
-// CARD DOS PRODUTO
+const API_BASE_URL = "https://api.escuelajs.co/api/v1";
+const API_DOC_URL = "https://fakeapi.platzi.com";
+
 function renderCard(produto) {
   return `
     <div class="card">
@@ -50,6 +52,23 @@ function mostrarToast(mensagem) {
     toast.remove();
   }, 3000);
 }
+
+function renderApiLinks() {
+  const apiBaseAnchor = document.querySelector(".api-base-link");
+  const apiDocAnchor = document.querySelector(".api-doc-link");
+
+  if (apiBaseAnchor) {
+    apiBaseAnchor.href = API_BASE_URL;
+    apiBaseAnchor.innerText = API_BASE_URL;
+  }
+
+  if (apiDocAnchor) {
+    apiDocAnchor.href = API_DOC_URL;
+    apiDocAnchor.innerText = API_DOC_URL;
+  }
+}
+
+renderApiLinks();
 
 // MODAL
 function mostrarModalConfirmação(mensagem, onConfirmar){
