@@ -54,4 +54,8 @@
     flex-direction: column;
     gap: 0;
   }
+
+  .input-row input {
+    min-width: 93%;
+  }
 }

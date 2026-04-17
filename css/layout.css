@@ -12,7 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   padding: 20px;
+  padding-top: 6rem;
+  position: relative;
 }
 
 .cadastro-container {
@@ -25,6 +28,11 @@
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
+}
+
+.portal-img-cadastro img {
+  width: 24px;
+  height: 24px;
 }
 
 .login-container {
@@ -76,14 +84,22 @@
   padding: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.header-login {
+  position: fixed;
+  z-index: 50;
+  top: 0px;
+  width: 100%;
 }
 
 .header-content {
+  background-color: rgb(242 247 255 / 0.7);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 6px 20px;
+  margin: 0px 20px;
 }
 
 a {
@@ -162,10 +178,6 @@ a {
   margin: 0 0 10px 0;
 }
 
-.input-group {
-  font-size: 12px;
-}
-
 .label-wrapper {
   display: flex;
   justify-content: space-between;
@@ -174,8 +186,6 @@ a {
 .input-row {
   display: flex;
   gap: 40px;
-  width: 100%;
-  min-width: 240px;
 }
 
 .input-row .input-group {

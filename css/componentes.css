@@ -4,6 +4,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  font-size: 12px;
 }
 
 .input-group label {
@@ -58,9 +59,10 @@
   height: 14px;
 }
 
-.hidden {
+/* OCULTO POR ENQUANTO */
+/* .hidden {
   display: none;
-}
+} */
 
 /* CODIGO KAUÃ */
 
