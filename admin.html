@@ -1,11 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Admin</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feira Digital • Painel Administrativo</title>
+    <link rel="stylesheet" href="/css/base.css">
+  </head>
+
+  <body>
+    <div>
+      <aside>
+        <div>
+          <h2>Feira Digital</h2>
+          <span>Painel Admin</span>
+        </div>
+
+        <nav>
+          <h4>Menu</h4>
+
+          <a href="#">📊 Dashboard</a>
+          <a href="#">📦 Produtos</a>
+          <a href="#">🗂 Categorias</a>
+          <a href="#">🛒 Pedidos</a>
+          <a href="#">👥 Clientes</a>
+          <a href="#">📈 Relatórios</a>
+
+          <hr />
+
+          <h4>Sistema</h4>
+
+          <a href="#">⚙ Configurações</a>
+          <a href="#">👤 Usuários</a>
+          <a href="#">🚪 Sair</a>
+        </nav>
+      </aside>
+
+      <main>
+        <header>
+          <div>
+            <h3>Gestão de Produtos</h3>
+          </div>
+
+          <div>
+            <a href="#">Ver Loja ↗</a>
+            <div>👤 Administrador</div>
+          </div>
+        </header>
+
+        <section>
+          <div>
+            <button>+ Novo Produto</button>
+          </div>
+
+          <div>
+            <button>Todos</button>
+            <button>Ativos</button>
+            <button>Rascunhos</button>
+            <button>Sem estoque</button>
+          </div>
+
+          <div>
+            <input type="text" placeholder="Buscar por nome, categoria..." />
+
+            <div>
+              <button>Filtrar</button>
+              <button>Exportar</button>
+            </div>
+          </div>
+
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Categoria</th>
+                  <th>Preço</th>
+                  <th>Estoque</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Camisa Premium</td>
+                  <td>Roupas</td>
+                  <td>R$ 79,90</td>
+                  <td>32</td>
+                  <td><span>Ativo</span></td>
+                  <td>
+                    <button>Editar</button>
+                    <button>Excluir</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Tênis Casual</td>
+                  <td>Calçados</td>
+                  <td>R$ 199,90</td>
+                  <td>0</td>
+                  <td><span>Sem estoque</span></td>
+                  <td>
+                    <button>Editar</button>
+                    <button>Excluir</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Relógio Smart</td>
+                  <td>Eletrônicos</td>
+                  <td>R$ 399,90</td>
+                  <td>12</td>
+                  <td><span>Rascunho</span></td>
+                  <td>
+                    <button>Editar</button>
+                    <button>Excluir</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>
