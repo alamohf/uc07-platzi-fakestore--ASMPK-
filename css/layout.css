@@ -15,9 +15,22 @@
   padding: 20px;
 }
 
+.cadastro-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-width: 1100px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
 .login-container {
   display: flex;
   width: 100%;
+  height: 80vh;
   max-width: 900px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -29,6 +42,20 @@
 .panel-visual,
 .panel-form {
   flex: 1;
+}
+
+.panel-visual-cadastro {
+  flex: 1;
+  background-image:
+    linear-gradient(rgba(0, 106, 53, 0.6), rgba(0, 106, 53, 0.6)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNNtc52FvWjU9_hodURIHtz82U07y1pwUavbgutqxTnutm9KJzgBVhWWEArTUojcR4a7SJN0jaFZX31NdWB7bDCrHbItnLYjYePSsckaOuC4oZWTIx6pLaW3HRv3mA7G5y9mlRDmcf4SxGIM4wIEQWJ9bm8r6G0nghD0EqhfiarKpqiUb8lsFJyZV-36QWOuPwp2yDDdH1XbmdiG3OJ2wNfSJ90Gby78Wp_qA-s28U4vi3MUs0c5ViUiir8gkdTa2G98_k1FjtDPOF");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+  color: #ffffff;
+  position: relative;
 }
 
 .panel-visual {
@@ -101,6 +128,23 @@ a {
   font-family: "Manrope", sans-serif;
 }
 
+.form-header-cadastro {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: 16px;
+}
+
+.form-header-cadastro p {
+  color: #006b3f;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.form-header-cadastro h1 {
+  margin: 10px 0 40px 0;
+}
+
 .form-header {
   font-family: "Manrope", sans-serif;
   display: flex;
@@ -125,6 +169,32 @@ a {
 .label-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.input-row {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  min-width: 240px;
+}
+
+.input-row .input-group {
+  flex: 1;
+}
+
+.checkbox-group-cadastro {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 5px 0 24px 0;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group-cadastro input {
+  border-color: rgb(159 175 192 / var(--tw-border-opacity, 1));
+  border-radius: 24px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .checkbox-group {
@@ -156,4 +226,14 @@ a {
 .portal-tag {
   color: rgb(77 93 108 / var(--tw-text-opacity, 1));
   font-size: 15px;
+}
+
+.header-links a {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 0 15px 0 15px;
+  transition: 0.3s;
+}
+
+.header-links a:hover {
+  color: rgb(33 48 62 / var(--tw-text-opacity, 1));
 }

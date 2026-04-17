@@ -8,6 +8,14 @@
     height: 80vh;
   }
 
+  .panel-visual-cadastro {
+    display: none;
+  }
+
+  .header-links {
+    display: none;
+  }
+
   .panel-visual {
     display: none;
   }
@@ -40,5 +48,10 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 0;
   }
 }
