@@ -4,6 +4,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  font-size: 12px;
 }
 
 .input-group label {
@@ -41,6 +42,27 @@
 .btn-primary:hover {
   background-color: #005c2d;
 }
+
+.validation-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #006b3f;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.validation-message img {
+  width: 14px;
+  height: 14px;
+}
+
+/* OCULTO POR ENQUANTO */
+/* .hidden {
+  display: none;
+} */
 
 /* CODIGO KAUÃ */
 
