@@ -1,13 +1,20 @@
-const API_BASE_URL = "https://api.escuelajs.co/api/v1";
-const API_DOC_URL = "https://fakeapi.platzi.com";
-
 function renderCard(produto) {
+  const imagem =
+    produto.images && produto.images.length > 0
+      ? produto.images[0]
+      : "https://via.placeholder.com/300";
+
   return `
     <div class="card">
-      <img src="${produto.images[0]}" alt="${produto.title}">
+
+       <img 
+        src="${imagem}" 
+        alt="${produto.title}"
+        onerror="this.src='https://via.placeholder.com/300'"
+      >
       
       <h3>${produto.title}</h3>
-      
+
       <p class="preco">R$ ${produto.price}</p>
       
       <button onclick="verDetalhe(${produto.id})">
@@ -16,7 +23,6 @@ function renderCard(produto) {
     </div>
   `;
 }
-
 
 // REDIRECIONAR PARA DETALHE DO PRODUTO
 function verDetalhe(id) {
@@ -30,15 +36,13 @@ function renderLoading() {
   `;
 }
 
-
 // FUNÇÃO PARA QUANDO NÃO TIVER PRODUTO
-// RENDEREMPTY QUANDO NÃO APARECE O RESULTADO 
+// RENDEREMPTY QUANDO NÃO APARECE O RESULTADO
 function renderEmpty() {
   return `
     <p class="empty">Nenhum produto encontrado</p>
   `;
 }
-
 
 // MENSAGEM RÁPIDA TOAST
 function mostrarToast(mensagem) {
@@ -71,11 +75,11 @@ function renderApiLinks() {
 renderApiLinks();
 
 // MODAL
-function mostrarModalConfirmação(mensagem, onConfirmar){
-    const overlay = document.createElement("div");
-    overlay.className = "modal-overlay";
+function mostrarModalConfirmação(mensagem, onConfirmar) {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
 
-    const modal = document.createElement("div");
+  const modal = document.createElement("div");
   modal.className = "modal";
 
   modal.innerHTML = `
@@ -98,4 +102,3 @@ function mostrarModalConfirmação(mensagem, onConfirmar){
     overlay.remove();
   };
 }
-    

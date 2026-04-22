@@ -1,112 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes do Produto</title>
 
-    <link rel ="stylesheet"href="css/base.css">
-    <link rel="stylesheet"href="css/componentes.css">
-    <link rel="stylesheet"href="css/layout.css">
-</head>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
 
-<body>
-  <!-- CABEÇALHO -->
-  <header class="header">
-    <h1>FakeStore</h1>
-    <nav>
-      <a href="index.html">Vitrine</a>
-      <a href="admin.html">Cadastrar Produto</a>
-      <a href="perfil.html">Minha Conta</a>
-    </nav>
-  </header>
+  <body>
+    <!-- CABEÇALHO -->
+    <header class="header">
+      <h1>FakeStore</h1>
+      <nav>
+        <a href="index.html">Vitrine</a>
+        <a href="admin.html">Cadastrar Produto</a>
+        <a href="perfil.html">Minha Conta</a>
+      </nav>
+    </header>
 
-  <main>
+    <main>
+      <!-- VOLTAR -->
+      <section class="voltar">
+        <a href="index.html">← Voltar à Vitrine</a>
+      </section>
 
-    <!-- VOLTAR -->
-    <section class="voltar">
-      <a href="index.html">← Voltar à Vitrine</a>
-    </section>
+      <!-- DETALHE DO PRODUTO -->
+      <section id="produto-detalhe" class="produto">
+        <p class="loading">Carregando produto...</p>
 
-    <!-- DETALHE DO PRODUTO -->
-    <section id="produto-detalhe"
-      class="produto">
+        <div class="produto-container">
+          <div class="produto-imagem">
+            <img src="" alt="Produto" />
+          </div>
 
-      <p class="loading">Carregando produto...</p>
-        
-      <div class="produto-container">
-      <div class="produto-imagem">
-          <img src="foto dos produtos alt="Produto>
+          <!-- INFORMAÇÕES -->
+          <div class="produto-info">
+            <h2 class="produto-titulo">Nome do Produto</h2>
+
+            <p class="preco">R$ 00,00</p>
+
+            <p class="descricao">
+              Descrição do produto aqui (estático por enquanto)
+            </p>
+
+            <span class="categoria">Categoria</span>
+
+            <button class="btn-comprar">Comprar</button>
+          </div>
         </div>
+      </section>
 
-        <!-- INFORMAÇÕES -->
-        <div class="produto-info">
-          <h2 class="produto-titulo">Nome do Produto</h2>
+      <!-- RELACIONADOS -->
+      <section id="relacionados" class="relacionados">
+        <h2>Produtos Relacionados</h2>
 
-          <p class="preco">R$ 00,00</p>
+        <!-- PRODUTO NÃO ENCONTRADO -->
+        <p class="empty">Nenhum produto encontrado</p>
 
-          <p class="descricao">
-            Descrição do produto aqui (estático por enquanto)
-          </p>
-
-          <span class="categoria">Categoria</span>
-
-          <button class="btn-comprar">Comprar</button>
+        <div class="lista-relacionados">
+          <!-- CARD EXEMPLO -->
+          <div class="card">
+            <img src="foto dos produtos " alt="Produto" />
+            <h3>Produto Exemplo</h3>
+            <p class="preco">R$ 00,00</p>
+            <button>Ver Detalhes</button>
+          </div>
         </div>
+      </section>
+    </main>
 
-      </div>
-    </section>
+    <!--LINK DA API -->
 
-    <!-- RELACIONADOS -->
-    <section id="relacionados" class="relacionados">
+    <footer class="footer">
+      <p>
+        API base:
+        <a class="api-base-link" href="#" target="_blank"></a>
+      </p>
 
-      <h2>Produtos Relacionados</h2>
+      <p>
+        Documentação:
+        <a class="api-doc-link" href="#" target="_blank"></a>
+      </p>
+    </footer>
 
-      <!-- PRODUTO NÃO ENCONTRADO -->
-      <p class="empty">Nenhum produto encontrado</p>
+    <!-- JavaScript-->
 
-      <div class="lista-relacionados">
-
-        <!-- CARD EXEMPLO -->
-        <div class="card">
-          <img src="foto dos produtos "
-          alt="Produto">
-          <h3>Produto Exemplo</h3>
-          <p class="preco">R$ 00,00</p>
-          <button>Ver Detalhes</button>
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!--LINK DA API -->
-
-  <footer class="footer">
-     <p>
-      API base:
-      <a class="api-base-link" href="#" target="_blank"></a>
-     </p>
-
-     <p>
-      Documentaçã:
-      <a class="api-doc-link" href="#" target="_blank"></a>
-     </p>
-  </footer>
-
-  <!-- JavaScript-->
-
-  <script src="js/api/config.js"></script>
-   <script src="js/ui/componentes.js"></script>
-  <script src="js/ui/detalhe.js"></script>
-
-</body>
+    <script src="js/api/config.js"></script>
+    <script src="js/api/produtos.js"></script>
+    <script src="js/ui/componentes.js"></script>
+    <script src="js/ui/detalhe.js"></script>
+  </body>
 </html>
-
-
-
-
-
-
