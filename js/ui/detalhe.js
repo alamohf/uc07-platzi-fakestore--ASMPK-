@@ -6,25 +6,19 @@ const containerRelacionados = document.querySelector(".lista-relacionados");
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-
 // CARREGAR PRODUTO
 
 async function carregarProduto(id) {
   try {
     containerDetalhe.innerHTML = renderLoading();
 
-    const res = await fetch(`${API_BASE_URL}/products/${id}`);
-    if (!res.ok) throw new Error("Erro ao carregar produto");
-
-    const produto = await res.json();
-
+    var produto = await buscarProdutoPorId(id);
     renderProduto(produto);
   } catch (erro) {
     containerDetalhe.innerHTML = renderEmpty();
     mostrarToast("Erro ao carregar produto");
   }
 }
-
 
 // RENDER PRODUTO
 
@@ -60,26 +54,19 @@ function renderProduto(produto) {
   `;
 }
 
-
 // AÇÃO DE COMPRA
 
 function comprarProduto() {
   mostrarToast("Produto adicionado ao carrinho!");
 }
 
-
 // CARREGAR RELACIONADOS
-
 
 async function carregarRelacionados(id) {
   try {
     containerRelacionados.innerHTML = renderLoading();
 
-    const res = await fetch(`${API_BASE_URL}/products/${id}/related`);
-    if (!res.ok) throw new Error("Erro ao carregar relacionados");
-
-    const produtos = await res.json();
-
+    var produtos = await buscarProdutosRelacionados(id);
     if (!produtos.length) {
       containerRelacionados.innerHTML = renderEmpty();
       return;
@@ -91,7 +78,6 @@ async function carregarRelacionados(id) {
     mostrarToast("Erro ao carregar relacionados");
   }
 }
-
 
 // INICIAR
 
