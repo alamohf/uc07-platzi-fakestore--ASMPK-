@@ -131,3 +131,9 @@ function atualizarPaginação() {
     }
 }
 
+
+function buscarPorTitulo() {
+    buscaAtual = buscaInput?.value.trim()|| '';
+    paginaAtual = 1;
+    carregarVitrine();
+}
