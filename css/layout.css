@@ -1,0 +1,257 @@
+.login-body {
+  background-color: #f2f7ff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+  padding-top: 6rem;
+  position: relative;
+}
+
+.cadastro-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-width: 1100px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.portal-img-cadastro img {
+  width: 24px;
+  height: 24px;
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  max-width: 900px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.panel-visual,
+.panel-form {
+  flex: 1;
+}
+
+.panel-visual-cadastro {
+  flex: 1;
+  background-image:
+    linear-gradient(rgba(0, 106, 53, 0.6), rgba(0, 106, 53, 0.6)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNNtc52FvWjU9_hodURIHtz82U07y1pwUavbgutqxTnutm9KJzgBVhWWEArTUojcR4a7SJN0jaFZX31NdWB7bDCrHbItnLYjYePSsckaOuC4oZWTIx6pLaW3HRv3mA7G5y9mlRDmcf4SxGIM4wIEQWJ9bm8r6G0nghD0EqhfiarKpqiUb8lsFJyZV-36QWOuPwp2yDDdH1XbmdiG3OJ2wNfSJ90Gby78Wp_qA-s28U4vi3MUs0c5ViUiir8gkdTa2G98_k1FjtDPOF");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+  color: #ffffff;
+  position: relative;
+}
+
+.panel-visual {
+  flex: 1;
+  background-image:
+    linear-gradient(rgba(0, 106, 53, 0.6), rgba(0, 106, 53, 0.6)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuAo9OwP3em6JhxWUeQhan2p11lRmFMFjf-iH5__SjMtn3NanLhLa0sODaLCpwQHKtCIe9FLlyv8Rx7UDOrBIj0PpE9vffZRaNSvYNmopb35E3Ylg-vfpns5NESgjWL3vpYWqtdHqZDjLZTwlEX2Bh08ggPv992JusmOyePCr29RiFFSqrrmsxePc-jHmnvlHrGQN9d5-XkpsG3OxIWcSTZXaZGxAlCsvdpiX2tDi9XNgqRUDQpTCboYGZz2oDK37UVC36v33eASL3kn");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+  color: #ffffff;
+  position: relative;
+}
+
+.panel-form {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.panel-form-cadastro {
+  flex: 1;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header-login {
+  position: fixed;
+  z-index: 50;
+  top: 0px;
+  width: 100%;
+}
+
+.header-content {
+  background-color: rgb(242 247 255 / 0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #006b3f;
+}
+
+.footer-login {
+  background-color: #21303e;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo h3 {
+  color: #ffffff;
+  font-family: "Manrope", sans-serif;
+  font-size: 24px;
+}
+
+.footer-links a {
+  color: rgba(242, 247, 255, 0.6);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 4px 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  color: rgba(242, 247, 255, 0.6);
+  font-size: 12px;
+}
+
+.logo {
+  font-size: 12px;
+  font-family: "Manrope", sans-serif;
+}
+
+.form-header-cadastro {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: 16px;
+}
+
+.form-header-cadastro p {
+  color: #006b3f;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.form-header-cadastro h1 {
+  margin: 10px 0 40px 0;
+}
+
+.form-header {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.form-header p {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 0 0 40px 0;
+  font-size: 14px;
+}
+
+.form-header h1 {
+  margin: 0 0 10px 0;
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-row {
+  display: flex;
+  gap: 40px;
+}
+
+.input-row .input-group {
+  flex: 1;
+}
+
+.checkbox-group-cadastro {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 5px 0 24px 0;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group-cadastro input {
+  border-color: rgb(159 175 192 / var(--tw-border-opacity, 1));
+  border-radius: 24px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.checkbox-group {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 24px 0px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input {
+  border-color: rgb(159 175 192 / var(--tw-border-opacity, 1));
+  border-radius: 24px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-footer {
+  text-align: center;
+  justify-content: flex-end;
+  font-size: 12px;
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+}
+
+.visual-content {
+  color: rgb(205 255 212 / var(--tw-text-opacity, 1));
+}
+
+.portal-tag {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  font-size: 15px;
+}
+
+.header-links a {
+  color: rgb(77 93 108 / var(--tw-text-opacity, 1));
+  margin: 0 15px 0 15px;
+  transition: 0.3s;
+}
+
+.header-links a:hover {
+  color: rgb(33 48 62 / var(--tw-text-opacity, 1));
+}

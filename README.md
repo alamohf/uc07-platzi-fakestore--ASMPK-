@@ -8,10 +8,10 @@ Em desenvolvimento · Sprint 1 · 13/04/2026
 
 ## Equipe
 - **Líder Técnico:** Álamo Henrique
-- **Dev 1 (Vitrine):** [nome]
-- **Dev 2 (Detalhe & Componentes):** [nome]
-- **Dev 3 (CRUD Admin):** [nome]
-- **Dev 4 (Autenticação):** [nome]
+- **Dev 1 (Vitrine):** [Samuel Renildo]
+- **Dev 2 (Detalhe & Componentes):** [Maria Clara]
+- **Dev 3 (CRUD Admin):** [Pablo Alejandro]
+- **Dev 4 (Autenticação):** [Kauã Victor]
 
 ## Tecnologias
 - HTML5 semântico

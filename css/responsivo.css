@@ -1,0 +1,78 @@
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    height: 80vh;
+  }
+
+  .cadastro-container {
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    height: 110vh;
+  }
+
+  .panel-visual-cadastro {
+    display: none;
+  }
+
+  .header-links {
+    display: none;
+  }
+
+  .panel-visual {
+    display: none;
+  }
+
+  .panel-form {
+    flex: 1;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .panel-form-cadastro {
+    flex: 1;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .header-content {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .portal-tag {
+    display: none;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .input-row input {
+    min-width: 93%;
+  }
+}
