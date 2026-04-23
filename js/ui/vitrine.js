@@ -11,7 +11,7 @@
 
 
 let paginaAtual = 1;
-const limite = 8;
+const limit = 8;
 let categoriaAtual = null;
 let buscaAtual = '';
 
@@ -28,12 +28,12 @@ async function carregarVitrine() {
     try {
         produtosGrid.innerHTML = '<div class="loading">Carregando...</div>';
 
-        const offset = (paginaAtual - 1) * limite;
+        const offset = (paginaAtual - 1) * limit;
 
 
         const filtros = {
             offset: offset,
-            limite: limite
+            limit: limit
         };
 
         if (categoriaAtual) filtros.categoryId = categoriaAtual;
@@ -74,4 +74,32 @@ async function carregarVitrine() {
         card.querySelector('.btn-comprar').onclick = () => alert ('🛒 ${produto} adicionado');
         produtosGrid.appendChild(card);
     });
+}
+
+
+async function filtroPorCategoria(categoryId) {
+    categoriaAtual = categoryId;
+    paginaAtual = 1;
+    await carregarVitrine();
+}
+
+async function carregarCategoria() {
+    const selectCategoria = document.getElementById('seleção-categoria');
+    if (!selectCategoria) return;
+
+    try {
+        const categorias = await buscaCategorias();
+
+        selectCategoria.innerHTML = '<option value="">Todas categorias</option>';
+
+        categorias.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.id;
+            option.textContent = cat.name;
+            selectCategoria.appendChild(option);
+        });
+    
+    } catch (erro) {
+        selectCategoria.innerHTML = '<option value="">Categorias indisponiveis</option>';
+    }
 }
