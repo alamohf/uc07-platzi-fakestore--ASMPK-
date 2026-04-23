@@ -87,6 +87,14 @@
   justify-content: flex-start;
 }
 
+.panel-form-cadastro {
+  flex: 1;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .header-login {
   position: fixed;
   z-index: 50;
