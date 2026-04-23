@@ -103,3 +103,31 @@ async function carregarCategoria() {
         selectCategoria.innerHTML = '<option value="">Categorias indisponiveis</option>';
     }
 }
+
+
+
+
+function proximaPagina() {
+    paginaAtual++;
+    carregarVitrine();
+    window.scrollTo({ top: 0, behavior: 'smooth'});
+}
+
+
+function anteriorPagina() {
+    if (paginaAtual > 1) {
+        paginaAtual--;
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    }
+}
+
+function atualizarPaginação() {
+    if (paginaSpan) {
+        paginaSpan.textContent = 'Página ${paginaAtual}';
+    }
+
+    if (btnAnterior) {
+        btnAnterior.disabled = paginaAtual === 1;
+    }
+}
+
