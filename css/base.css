@@ -111,14 +111,14 @@ body {
 .preco-produto {
     font-size: 24px;
     font-weight: bold;
-    color: #667eea;
+    color: #777777;
     margin-bottom: 16px;
 }
 
 .btn-comprar {
     width: 100%;
     padding: 10px;
-    background-color: #667eea;
+    background-color: #777777;
     color: white;
     border: none;
     border-radius: 5px;
@@ -128,7 +128,7 @@ body {
 }
 
 .btn-comprar:hover {
-    background-color: #5a67d8;
+    background-color: #020732;
 }
 
 .rodapé-principal {
