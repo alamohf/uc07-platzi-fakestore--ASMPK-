@@ -4,7 +4,7 @@ const containerRelacionados = document.querySelector(".lista-relacionados");
 // PEGAR ID DA URL
 
 const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const id = params.get("id") || 4;
 
 // CARREGAR PRODUTO
 
@@ -17,13 +17,26 @@ async function carregarProduto(id) {
   } catch (erro) {
     containerDetalhe.innerHTML = renderEmpty();
     mostrarToast("Erro ao carregar produto");
+    console.error(erro);
   }
 }
 
 // RENDER PRODUTO
 
 function renderProduto(produto) {
-  const imagem = produto.images?.[0] || "https://via.placeholder.com/300";
+ 
+  let imagens = produto.images;
+
+if (typeof imagens === "string") {
+  try {
+    imagens = JSON.parse(imagens);
+  } catch {
+    imagens = [];
+  }
+}
+
+const imagem = imagens?.[0]?.replace (/[\[\]"]/g, "") || 
+"https://via.placeholder.com/300";
 
   containerDetalhe.innerHTML = `
     <div class="produto-container">
@@ -45,7 +58,8 @@ function renderProduto(produto) {
 
         <span class="categoria">${produto.category?.name || "Sem categoria"}</span>
 
-        <button class="btn-comprar" onclick="comprarProduto()">
+        <button class="btn-comprar" 
+    onclick="comprarProduto()">
           Comprar
         </button>
       </div>
@@ -63,10 +77,12 @@ function comprarProduto() {
 // CARREGAR RELACIONADOS
 
 async function carregarRelacionados(id) {
+
   try {
     containerRelacionados.innerHTML = renderLoading();
 
     var produtos = await buscarProdutosRelacionados(id);
+
     if (!produtos.length) {
       containerRelacionados.innerHTML = renderEmpty();
       return;
@@ -74,17 +90,13 @@ async function carregarRelacionados(id) {
 
     containerRelacionados.innerHTML = produtos.map(renderCard).join("");
   } catch (erro) {
-    containerRelacionados.innerHTML = renderEmpty();
+      containerRelacionados.innerHTML = renderEmpty();
     mostrarToast("Erro ao carregar relacionados");
+    console.error(erro);
   }
 }
 
 // INICIAR
 
-if (id) {
   carregarProduto(id);
   carregarRelacionados(id);
-} else {
-  containerDetalhe.innerHTML = renderEmpty();
-  mostrarToast("Produto não encontrado");
-}
