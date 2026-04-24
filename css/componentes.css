@@ -1,3 +1,71 @@
+/* CODIGO KAUÃ */
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.input-group label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #4d5d6c;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  background-color: #e7f2ff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 14px;
+  color: #21303e;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #006b3f;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #005c2d;
+}
+
+.validation-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #006b3f;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.validation-message img {
+  width: 14px;
+  height: 14px;
+}
+
+/* OCULTO POR ENQUANTO */
+/* .hidden {
+  display: none;
+} */
+
+/* CODIGO KAUÃ */
+
 /*  CARD DE PRODUTO */
 
 .card {

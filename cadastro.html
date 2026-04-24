@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro | The Precision Merchant</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/componentes.css" />
+    <link rel="stylesheet" href="css/responsivo.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="login-body">
+    <header class="header-login">
+      <div class="header-content">
+        <div class="logo">
+          <h1>The Precision Merchant</h1>
+        </div>
+        <div class="header-links">
+          <a href="">Coleções</a>
+          <a href="">Novidades</a>
+        </div>
+        <span class="portal-img-cadastro">
+          <a href="">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/6067/6067231.png"
+              alt="Icone sacola"
+            />
+          </a>
+        </span>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="cadastro-container">
+        <aside class="panel-visual-cadastro">
+          <div class="visual-content">
+            <h2>Precisão em cada detalhe.</h2>
+            <p>
+              Junte-se a uma comunidade exclusiva de mercadores e
+              colecionadores. Sua jornada rumo à excelência curada começa aqui.
+            </p>
+          </div>
+        </aside>
+
+        <section class="panel-form">
+          <div class="form-header-cadastro">
+            <h1>Criar conta</h1>
+            <p>CADASTRO DE USUÁRIO</p>
+          </div>
+
+          <form id="login-form">
+            <div class="input-group">
+              <label for="name">NOME COMPLETO</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Digite seu nome completo"
+              />
+            </div>
+            <div class="input-group">
+              <label for="email">E-MAIL</label>
+              <input type="email" id="email" placeholder="nome@email.com" />
+              <div id="email-status" class="validation-message hidden">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/5610/5610944.png"
+                  alt="ícone check"
+                />
+                <span>E-MAIL DISPONÍVEL</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="password">SENHA</label>
+                <div class="input-wrapper">
+                  <input type="password" id="password" placeholder="●●●●●●●●" />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="confirm-password">CONFIRMAR SENHA</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    placeholder="●●●●●●●●"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="checkbox-group-cadastro">
+              <input type="checkbox" id="remember" />
+              <label for="remember"
+                >Eu concordo com os <a href="">Termos de Serviço</a> e a
+                <a href="">Política de Privacidade</a>.</label
+              >
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Entrar <span>→</span>
+            </button>
+          </form>
+
+          <div class="form-footer">
+            <p>Já tem uma conta? <a href="#">Entrar</a></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer-login">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>The Precision Merchant</h3>
+        </div>
+        <nav class="footer-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Serviço</a>
+          <a href="#">Envio</a>
+          <a href="#">Contato</a>
+        </nav>
+        <p class="copyright">
+          © 2024 The Precision Merchant. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
