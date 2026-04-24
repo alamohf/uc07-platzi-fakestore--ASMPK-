@@ -137,3 +137,19 @@ function buscarPorTitulo() {
     paginaAtual = 1;
     carregarVitrine();
 }
+
+
+async function inicializar() {
+    await carregarVitrine();
+    await carregarCategoria();
+
+
+    if (btnAnterior) btnAnterior.addEventListener('click', anteriorPagina);
+    if (btnProxima) btnProxima.addEventListener('click',  proximaPagina);
+    if (btnBuscar) btnBuscar.addEventListener('click', buscarPorTitulo);
+    if (buscaInput) buscaInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') buscarPorTitulo();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', inicializar);
