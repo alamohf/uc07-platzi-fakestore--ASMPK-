@@ -60,9 +60,9 @@
                 id="name-cadastro"
                 placeholder="Digite seu nome completo"
                 required
-                oninput="nameValidate"
+                oninput="nameValidate()"
               />
-              <span 
+              <span class="span-required"
                 >Digite pelo menos nome e sobrenome.</span
               >
             </div>
@@ -74,7 +74,7 @@
                 placeholder="nome@email.com"
                 required
               />
-              <span class="span-required"Digite um email válido.</span>
+              <span class="span-required">Digite um email válido.</span>
               <div id="email-status" class="validation-message hidden">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/5610/5610944.png"
@@ -94,7 +94,9 @@
                     placeholder="●●●●●●●●"
                     required
                   />
-                  <span class="span-required">Senha deve ter no mínimo 8 caracteres.</span>
+                  <span class="span-required"
+                    >Senha deve ter no mínimo 8 caracteres.</span
+                  >
                 </div>
               </div>
 
@@ -107,7 +109,9 @@
                     placeholder="●●●●●●●●"
                     required
                   />
-                  <span class="span-required">Senhas devem ser compatíveis.</span>
+                  <span class="span-required"
+                    >Senhas devem ser compatíveis.</span
+                  >
                 </div>
               </div>
             </div>
