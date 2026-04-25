@@ -59,10 +59,17 @@
   height: 14px;
 }
 
-/* OCULTO POR ENQUANTO */
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
+
+.span-required {
+  display: none;
+  color: #e63636;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 500;
+}
 
 /* CODIGO KAUÃ */
 
