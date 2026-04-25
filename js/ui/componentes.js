@@ -1,9 +1,17 @@
 function renderCard(produto) {
-  const imagem =
-    produto.images && produto.images.length > 0
-      ? produto.images[0]
-      : "https://via.placeholder.com/300";
+let imagens = produto.images;
 
+if (typeof imagens === "string") {
+  try {
+    imagens = JSON.parse(imagens);
+  } catch {
+    imagens = [];
+  } 
+}
+
+const imagem = imagens && imagens.length > 0
+  ? imagens[0]
+  : "https://via.placeholder.com/300";
   return `
     <div class="card">
 
