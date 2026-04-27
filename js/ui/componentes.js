@@ -1,17 +1,15 @@
 function renderCard(produto) {
-let imagens = produto.images;
+  let imagens = produto.images;
+  if (typeof imagens === "string") {
+    try { imagens = JSON.parse(imagens); } catch { imagens = []; }
+  }
 
-if (typeof imagens === "string") {
-  try {
-    imagens = JSON.parse(imagens);
-  } catch {
-    imagens = [];
-  } 
-}
+  // Limpeza robusta de caracteres como [ ] " \
+  const imagem = imagens && imagens.length > 0
+    ? imagens[0].replace(/[\[\]"\\ ]/g, "")
+    : "https://via.placeholder.com/300";
 
-const imagem = imagens && imagens.length > 0
-  ? imagens[0]
-  : "https://via.placeholder.com/300";
+
   return `
     <div class="card">
 
