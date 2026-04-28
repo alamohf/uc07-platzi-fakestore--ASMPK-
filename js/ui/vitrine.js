@@ -18,10 +18,43 @@ let buscaAtual = '';
 
 const produtosGrid = document.getElementById('produtos-grid');
 const btnAnterior = document.getElementById('btn-anterior');
-const btnProxima = document.getElementById('btn-proximma');
+const btnProxima = document.getElementById('btn-proxima');
 const paginaSpan = document.getElementById('pagina-span');
 const buscaInput = document.getElementById('busca-input');
 const btnBuscar = document.getElementById('btn-buscar');
+
+
+function exibirProdutos(produtos) {
+     produtosGrid.innerHTML = "";
+
+    if (!produtos || produtos.length === 0) {
+        produtosGrid.innerHTML = '<div class="vazio">Nenhum produto encontrado</div>';
+        return;
+    }
+
+
+    produtos.forEach(produto => {
+        const card = document.createElement('article');
+        card.className = 'card-produto';
+
+        const imagem = produto.images?.[0] || `https://picsum.photos/300/200?random=${produto.id}`;
+        const categoria = produto.category?.name || 'PRODUTO';
+
+
+         card.innerHTML = `
+            <img src="${imagem}" class="imagem-produto">
+            <div class="info-produto">
+                <div class="categoria-produto">${categoria}</div>
+                <h3 class="titulo-produto">${produto.title}</h3>
+                <div class="preco-produto">R$ ${produto.price.toFixed(2)}</div>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+        `;
+
+        card.querySelector('.btn-comprar').onclick = () => alert(`🛒 ${produto.title} adicionado`);
+        produtosGrid.appendChild(card);
+    });
+};
 
 
 async function carregarVitrine() {
@@ -50,31 +83,7 @@ async function carregarVitrine() {
         produtosGrid.innerHTML = '<div class="erro"> Erro ao carregar produtos</div>';
         return;
     }
-
-    produtosGrid.innerHTML = "";
-
-    produtosGrid.forEach(produto => {
-        const card = document.createElement('article');
-        card.className = 'card-produto';
-
-        const imagem = produto.images?.[0] || 'https://picsum.photos/300/200?random=${produtos.grid.id}';
-        const categoria = produto.category?.name || 'PRODUTO';
-
-
-         card.innerHTML = `
-            <img src="${imagem}" class="imagem-produto">
-            <div class="info-produto">
-                <div class="categoria-produto">${categoria}</div>
-                <h3 class="titulo-produto">${produto.title}</h3>
-                <div class="preco-produto">R$ ${produto.price.toFixed(2)}</div>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-        `;
-
-        card.querySelector('.btn-comprar').onclick = () => alert ('🛒 ${produto} adicionado');
-        produtosGrid.appendChild(card);
-    });
-}
+};
 
 
 async function filtroPorCategoria(categoryId) {
@@ -84,11 +93,11 @@ async function filtroPorCategoria(categoryId) {
 }
 
 async function carregarCategoria() {
-    const selectCategoria = document.getElementById('seleção-categoria');
+    const selectCategoria = document.getElementById('selecao-categoria');
     if (!selectCategoria) return;
 
     try {
-        const categorias = await buscaCategorias();
+        const categorias = await buscarCategorias();
 
         selectCategoria.innerHTML = '<option value="">Todas categorias</option>';
 
@@ -123,7 +132,7 @@ function anteriorPagina() {
 
 function atualizarPaginação() {
     if (paginaSpan) {
-        paginaSpan.textContent = 'Página ${paginaAtual}';
+        paginaSpan.textContent = `Página ${paginaAtual}`;
     }
 
     if (btnAnterior) {
