@@ -2,11 +2,12 @@
  * Configurações da API e tratamento dos erros
  */
 
-const BASE_URL = 'https://api.escuelajs.co/api/v1';
+const API_BASE_URL = 'https://api.escuelajs.co/api/v1';
+const API_DOC_URL = 'https://fakeapi.platzi.com/en/rest/products/';
 
 async function requisicaoAPI(endpoint, opcoes) {
   opcoes = opcoes || {};
-  var url = BASE_URL + endpoint;
+  var url = API_BASE_URL + endpoint;
   var token = localStorage.getItem('token');
 
   var headers = { 'Content-Type': 'application/json' };
