@@ -1,6 +1,36 @@
 const containerDetalhe = document.querySelector("#produto-detalhe");
 const containerRelacionados = document.querySelector(".lista-relacionados");
 
+function extrairUrlImagem(produto) {
+  let imagens = produto.images;
+
+  // 1. Tratamento caso a API envie uma string em vez de um array
+  if (typeof imagens === "string") {
+    try {
+      imagens = JSON.parse(imagens);
+    } catch (e) {
+      // Se não for um JSON válido, mantemos como está para o replace limpar depois
+    }
+  }
+
+  // 2. Pega a primeira imagem ou tenta a imagem da categoria como plano B
+  let urlBruta = (Array.isArray(imagens) && imagens.length > 0) 
+    ? imagens[0] 
+    : (produto.category?.image || "");
+
+  // 3. LIMPEZA TOTAL (Remove [ ] " \ e espaços extras)
+  let urlLimpa = urlBruta.replace(/[\[\]"\\ ]/g, "");
+
+  // 4. VALIDAÇÃO DE PROTOCOLO
+  // Se não começar com http ou for apenas texto (comum nessa API), usa um placeholder estável
+  if (!urlLimpa.startsWith("http")) {
+    return "https://picsum.photos/600/400"; 
+  }
+
+  return urlLimpa;
+}
+
+
 // PEGAR ID DA URL
 
 const params = new URLSearchParams(window.location.search);
