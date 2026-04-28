@@ -30,9 +30,18 @@
   margin-bottom: 15px;
 }
 
+.portal-img-perfil a {
+  gap: 8px;
+}
+
+.portal-img-perfil img {
+  width: 32px;
+  height: 32px;
+}
+
 .portal-img-cadastro img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 
 .login-container {
