@@ -17,19 +17,26 @@
             </nav>
     </header>
 
-    <main class="container">
+    <main class="container-principal">
         <aside class="barra-lateral">
-            <h3>Filtrar por:</h3>
+            <h3>CATEGORIAS</h3>
             <div class="opcoes">
                 <p>Eletrônicos</p>
                 <p>Roupas</p>
                 <p>Casa</p>
             </div>
+
+            <h3>FAIXA DE PREÇO</h3>
+            <div class="faixa-preco">
+                <span>R$ 20</span>
+                <span>R$ 3.000+</span>
+            </div>
+            
         </aside>
         <section class="vitrine">
             <h2>Nossos Produtos</h2>
 
-            <div class="produtos-grid">
+            <div id="produto-grid">
                 <article class="card-produto">
                     <img src= "https://picsum.photos/300/200?random=1" alt="Produto exemplo" class="imagem-produto">
                     <div class="info-produto">
@@ -50,47 +57,6 @@
                         <button class="btn-comprar">Comprar</button>
                     </div>
                 </article>
-
-                 <article class="card-produto">
-                    <img src="https://picsum.photos/300/200?random=1" alt="Produto exemplo" class="imagem-produto">
-                    <div class="info-produto">
-                        <h3 class="titulo-produto">Produto Exemplo 3</h3>
-                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
-                        <div class="preco-produto">R$ 199,90</div>
-                        <button class="btn-comprar">Comprar</button>
-                    </div>
-                </article>
-
-                 <article class="card-produto">
-                    <img src="https://picsum.photos/300/200?random=4" alt="Produto exemplo" class="imagem-produto">
-                    <div class="info-produto">
-                        <h3 class="titulo-produto">Produto Exemplo 4</h3>
-                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
-                        <div class="preco-produto">R$ 69,90</div>
-                        <button class="btn-comprar">Comprar</button>
-                    </div>
-                </article>
-
-                 <article class="card-produto">
-                    <img src="https://picsum.photos/300/200?random=5" alt="Produto exemplo" class="imagem-produto">
-                    <div class="info-produto">
-                        <h3 class="titulo-produto">Produto Exemplo 5</h3>
-                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
-                        <div class="preco-produto">R$ 79,90</div>
-                        <button class="btn-comprar">Comprar</button>
-                    </div>
-                </article>
-                
-                <article class="card-produto">
-                    <img src="https://picsum.photos/300/200?random=6" alt="Produto exemplo" class="imagem-produto">
-                    <div class="info-produto">
-                        <h3 class="titulo-produto">Produto Exemplo 6</h3>
-                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
-                        <div class="preco-produto">R$ 49,90</div>
-                        <button class="btn-comprar">Comprar</button>
-                    </div>
-                </article>  
-        </div>
         </section>
     </main>
 
@@ -98,6 +64,8 @@
         <p>2026 Loja de Produtos - Todos os direitos reservados</p>    
     </footer>
 
+    <script src="js/api/config.js"></script>
     <script src="js/api/produtos.js"></script>
+    <script src="js/ui/vitrine.js"></script>
 </body>
 </html>
