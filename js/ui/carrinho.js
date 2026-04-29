@@ -128,7 +128,7 @@ const Carrinho = {
     if (carrinho.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icone">🛒</div>
+          <div class="empty-state-icone"></div>
           <p class="empty-state-texto">Seu carrinho está vazio</p>
           <a href="index.html" class="btn btn-primario">Voltar à vitrine</a>
         </div>`;
@@ -160,8 +160,6 @@ const Carrinho = {
     }
   }
 };
-
-// ---- ESCUTADORES DE EVENTOS ----
 
 // Sincroniza abas: se mudar o carrinho em uma aba, a outra atualiza sozinha
 window.addEventListener('storage', (e) => {
