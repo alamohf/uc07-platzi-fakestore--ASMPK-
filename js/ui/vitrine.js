@@ -11,12 +11,12 @@
 
 
 let paginaAtual = 1;
-const limit = 8;
+const limit = 4;
 let categoriaAtual = null;
 let buscaAtual = '';
 
 
-const produtosGrid = document.getElementById('produtos-grid');
+const produtosGrid = document.getElementById('produto-grid');
 const btnAnterior = document.getElementById('btn-anterior');
 const btnProxima = document.getElementById('btn-proxima');
 const paginaSpan = document.getElementById('pagina-span');
@@ -37,7 +37,7 @@ function exibirProdutos(produtos) {
         const card = document.createElement('article');
         card.className = 'card-produto';
 
-        const imagem = produto.images?.[0] || `https://picsum.photos/300/200?random=${produto.id}`;
+        const imagem = `https://picsum.photos/300/200?random=${produto.id}`;
         const categoria = produto.category?.name || 'PRODUTO';
 
 
@@ -80,7 +80,7 @@ async function carregarVitrine() {
         atualizarPaginação();
 
     } catch (erro) {
-        produtosGrid.innerHTML = '<div class="erro"> Erro ao carregar produtos</div>';
+        produtosGrid.innerHTML = `<div class="erro"> Erro ao carregar produtos</div>`;
         return;
     }
 };
@@ -112,8 +112,6 @@ async function carregarCategoria() {
         selectCategoria.innerHTML = '<option value="">Categorias indisponiveis</option>';
     }
 }
-
-
 
 
 function proximaPagina() {
