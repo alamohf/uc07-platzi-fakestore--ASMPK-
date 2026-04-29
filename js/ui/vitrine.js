@@ -11,53 +11,33 @@
 
 
 let paginaAtual = 1;
-const limite = 8;
+const limit = 4;
 let categoriaAtual = null;
 let buscaAtual = '';
 
 
-const produtosGrid = document.getElementById('produtos-grid');
+const produtosGrid = document.getElementById('produto-grid');
 const btnAnterior = document.getElementById('btn-anterior');
-const btnProxima = document.getElementById('btn-proximma');
+const btnProxima = document.getElementById('btn-proxima');
 const paginaSpan = document.getElementById('pagina-span');
 const buscaInput = document.getElementById('busca-input');
 const btnBuscar = document.getElementById('btn-buscar');
 
 
-async function carregarVitrine() {
-    try {
-        produtosGrid.innerHTML = '<div class="loading">Carregando...</div>';
+function exibirProdutos(produtos) {
+     produtosGrid.innerHTML = "";
 
-        const offset = (paginaAtual - 1) * limite;
-
-
-        const filtros = {
-            offset: offset,
-            limite: limite
-        };
-
-        if (categoriaAtual) filtros.categoryId = categoriaAtual;
-        if (buscaAtual) filtros.title = buscaAtual;
-
-        const produtos = await buscarProdutos(filtros);
-
-        
-        exibirProdutos(produtos);
-
-        atualizarPaginação();
-
-    } catch (erro) {
-        produtosGrid.innerHTML = '<div class="erro"> Erro ao carregar produtos</div>';
+    if (!produtos || produtos.length === 0) {
+        produtosGrid.innerHTML = '<div class="vazio">Nenhum produto encontrado</div>';
         return;
     }
 
-    produtosGrid.innerHTML = "";
 
-    produtosGrid.forEach(produto => {
+    produtos.forEach(produto => {
         const card = document.createElement('article');
         card.className = 'card-produto';
 
-        const imagem = produto.images?.[0] || 'https://picsum.photos/300/200?random=${produtos.grid.id}';
+        const imagem = `https://picsum.photos/300/200?random=${produto.id}`;
         const categoria = produto.category?.name || 'PRODUTO';
 
 
@@ -71,7 +51,112 @@ async function carregarVitrine() {
             </div>
         `;
 
-        card.querySelector('.btn-comprar').onclick = () => alert ('🛒 ${produto} adicionado');
+        card.querySelector('.btn-comprar').onclick = () => alert(`🛒 ${produto.title} adicionado`);
         produtosGrid.appendChild(card);
     });
+};
+
+
+async function carregarVitrine() {
+    try {
+        produtosGrid.innerHTML = '<div class="loading">Carregando...</div>';
+
+        const offset = (paginaAtual - 1) * limit;
+
+
+        const filtros = {
+            offset: offset,
+            limit: limit
+        };
+
+        if (categoriaAtual) filtros.categoryId = categoriaAtual;
+        if (buscaAtual) filtros.title = buscaAtual;
+
+        const produtos = await buscarProdutos(filtros);
+
+        
+        exibirProdutos(produtos);
+
+        atualizarPaginação();
+
+    } catch (erro) {
+        produtosGrid.innerHTML = `<div class="erro"> Erro ao carregar produtos</div>`;
+        return;
+    }
+};
+
+
+async function filtroPorCategoria(categoryId) {
+    categoriaAtual = categoryId;
+    paginaAtual = 1;
+    await carregarVitrine();
 }
+
+async function carregarCategoria() {
+    const selectCategoria = document.getElementById('selecao-categoria');
+    if (!selectCategoria) return;
+
+    try {
+        const categorias = await buscarCategorias();
+
+        selectCategoria.innerHTML = '<option value="">Todas categorias</option>';
+
+        categorias.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.id;
+            option.textContent = cat.name;
+            selectCategoria.appendChild(option);
+        });
+    
+    } catch (erro) {
+        selectCategoria.innerHTML = '<option value="">Categorias indisponiveis</option>';
+    }
+}
+
+
+function proximaPagina() {
+    paginaAtual++;
+    carregarVitrine();
+    window.scrollTo({ top: 0, behavior: 'smooth'});
+}
+
+
+function anteriorPagina() {
+    if (paginaAtual > 1) {
+        paginaAtual--;
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    }
+}
+
+function atualizarPaginação() {
+    if (paginaSpan) {
+        paginaSpan.textContent = `Página ${paginaAtual}`;
+    }
+
+    if (btnAnterior) {
+        btnAnterior.disabled = paginaAtual === 1;
+    }
+}
+
+
+function buscarPorTitulo() {
+    buscaAtual = buscaInput?.value.trim()|| '';
+    paginaAtual = 1;
+    carregarVitrine();
+}
+
+
+async function inicializar() {
+    await carregarVitrine();
+    await carregarCategoria();
+
+
+    if (btnAnterior) btnAnterior.addEventListener('click', anteriorPagina);
+    if (btnProxima) btnProxima.addEventListener('click',  proximaPagina);
+    if (btnBuscar) btnBuscar.addEventListener('click', buscarPorTitulo);
+    if (buscaInput) buscaInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') buscarPorTitulo();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', inicializar);
