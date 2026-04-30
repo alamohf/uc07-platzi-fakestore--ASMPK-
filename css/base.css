@@ -31,6 +31,33 @@ body {
     margin-bottom: 0,5rem;
 }
 
+.navegação-principal {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.busca-nav {
+    display: flex;
+    gap: 5px;
+}
+
+.busca-nav input {
+    padding: 8px 12px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.busca-nav button {
+    padding: 8px 12px;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+}
+
 .barra-lateral {
     width: 200px;
     flex-shrink: 0;
@@ -52,7 +79,7 @@ body {
     color: #888;
 }
 
-.opcoes p {
+.lista-categorias p {
     font-size: 13px;
     color: #333;
     margin-bottom: 12px;
