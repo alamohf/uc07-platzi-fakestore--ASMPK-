@@ -272,13 +272,6 @@ a {
   gap: 16px;
 }
 
-aside {
-  position: fixed;
-  top: 0;
-  margin-top: 6rem;
-  margin-left: 20px;
-}
-
 .perfil-body {
   background-color: rgb(242 247 255 / 0.7); /* */
   font-family: "Inter", sans-serif;
@@ -290,22 +283,18 @@ aside {
 .main-layout {
   padding: 6rem 1rem 5rem 1rem;
   max-width: 1440px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
   gap: 2rem;
 }
 
 /* --- Sidebar --- */
 .sidebar {
-  display: none;
   flex-direction: column;
   width: 16rem;
   flex-shrink: 0;
   position: sticky;
   top: 6rem;
   height: fit-content;
-  padding: 1.5rem 1rem;
   border-radius: 0.5rem;
 }
 
@@ -424,7 +413,6 @@ aside {
 .profile-info-wrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 2rem;
 }
