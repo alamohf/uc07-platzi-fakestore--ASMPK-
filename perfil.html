@@ -1,26 +1,36 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/componentes.css" />
     <link rel="stylesheet" href="css/responsivo.css" />
   </head>
-  <body>
+  <body class="login-body">
     <header class="header-login">
       <div class="header-content">
         <div class="logo">
           <h1>The Precision Merchant</h1>
         </div>
-        <div class="header-links">
-          <a href="">Coleções</a>
-          <a href="">Novidades</a>
-          <a href="">Arquivo</a>
-        </div>
-        <span class="portal-img-perfil">
+        <nav class="header-links">
+          <a href="#">Coleções</a>
+          <a href="#">Novidades</a>
+          <a href="#">Arquivo</a>
+        </nav>
+        <span class="portal-img-cadastro">
           <a href="">
             <img
               src="https://img.icons8.com/pastel_glyph/1200/shopping-bag--v3.jpg"
@@ -40,7 +50,200 @@
             />
           </a>
         </span>
-      </div>
+      
     </header>
+
+    <main class="main-layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h3>Console Admin</h3>
+          <p>Gerenciamento de Comerciante</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">dashboard</span> Dashboard
+          </a>
+          <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">inventory_2</span> Estoque
+          </a>
+          <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">local_shipping</span>
+            Pedidos
+          </a>
+          <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">insights</span> Análise
+          </a>
+          <a href="#" class="nav-item active">
+            <span class="material-symbols-outlined">settings</span>
+            Configurações
+          </a>
+        </nav>
+        <button class="btn-primary sidebar-btn">Adicionar Produto</button>
+      </aside>
+
+      <div class="content-area">
+        <section class="profile-card">
+          <div class="bg-circle"></div>
+          <div class="profile-info-wrapper">
+            <div class="profile-avatar-container">
+              <img
+                alt="Perfil do Usuário Admin"
+                class="profile-img"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIh3bh40A3F5hUt5MsR4bi2g5mSM-izA85Satw3ryuBzwdVFKKPniCdvRwFzyCMKy50JInAwJD7aQAT7J60r_K8I7nAqA3h_Bde-UCNZt_OGswiVeHDsnDNnXPaJkUgciyCSaHlyYsmmRrzWlZGfb0MqU7gmk38_Z4W6qQAzUBE7Zd-ZP0acqv-sibYXFWR4a_ZeyhKtCi5MBC5ElWG1pHksXh9rsOFuLH5kIpVJOV8v2gddtxGz28T7TXbnFt6fLfxpgAWapUD7A4"
+              />
+              <div class="verified-badge">
+                <span class="material-symbols-outlined">verified</span>
+              </div>
+            </div>
+            <div class="profile-details">
+              <span class="profile-label">Comerciante Verificado</span>
+              <h1>Alexander Vance</h1>
+              <div class="profile-meta">
+                <span
+                  ><span class="material-symbols-outlined">mail</span>
+                  alexander.v@precisionmerchant.com</span
+                >
+                <span class="separator">|</span>
+                <span
+                  ><span class="material-symbols-outlined">calendar_today</span>
+                  Entrou em Março de 2022</span
+                >
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button class="btn-primary edit-btn">
+                <span class="material-symbols-outlined">edit</span> Editar
+                Perfil
+              </button>
+              <button class="btn-secondary">Configurações</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="orders-section">
+          <div class="section-header">
+            <h2>Pedidos Recentes</h2>
+            <a href="#" class="link-primary">Ver Todos os Pedidos</a>
+          </div>
+          <div class="table-container">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>ID do Pedido</th>
+                  <th>Produto</th>
+                  <th>Data</th>
+                  <th>Total</th>
+                  <th class="text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="order-id">#ORD-88219</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-icon">
+                        <span class="material-symbols-outlined">watch</span>
+                      </div>
+                      <div>
+                        <div class="product-name">Precision Chronograph</div>
+                        <div class="product-category">Luxury Series</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>12 de Out de 2024</td>
+                  <td class="order-total">$1,250.00</td>
+                  <td class="text-right">
+                    <span class="badge badge-shipped">Enviado</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="order-id">#ORD-88154</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-icon">
+                        <span class="material-symbols-outlined"
+                          >content_cut</span
+                        >
+                      </div>
+                      <div>
+                        <div class="product-name">Tailored Merino Coat</div>
+                        <div class="product-category">Autumn Archive</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>05 de Out de 2024</td>
+                  <td class="order-total">$890.00</td>
+                  <td class="text-right">
+                    <span class="badge badge-processing">Processando</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="order-id">#ORD-87992</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-icon">
+                        <span class="material-symbols-outlined">cases</span>
+                      </div>
+                      <div>
+                        <div class="product-name">Leather Document Case</div>
+                        <div class="product-category">Essentials</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>28 de Set de 2024</td>
+                  <td class="order-total">$420.00</td>
+                  <td class="text-right">
+                    <span class="badge badge-delivered">Entregue</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card bg-high">
+            <span class="material-symbols-outlined stat-icon text-primary"
+              >payments</span
+            >
+            <div class="stat-info">
+              <div class="stat-value">$42,300</div>
+              <div class="stat-label">Gasto Total</div>
+            </div>
+          </div>
+          <div class="stat-card bg-primary-dark">
+            <span class="material-symbols-outlined stat-icon text-light-green"
+              >military_tech</span
+            >
+            <div class="stat-info">
+              <div class="stat-value text-light-green">Platina</div>
+              <div class="stat-label text-light-green-dim">Nível de Membro</div>
+            </div>
+          </div>
+          <div class="stat-card bg-highest">
+            <span class="material-symbols-outlined stat-icon">inventory</span>
+            <div class="stat-info">
+              <div class="stat-value">124</div>
+              <div class="stat-label">Itens Comprados</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-logo">The Precision Merchant</div>
+        <div class="footer-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Serviço</a>
+          <a href="#">Envio</a>
+          <a href="#">Contato</a>
+        </div>
+        <div class="footer-copyright">
+          © 2024 The Precision Merchant. Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
