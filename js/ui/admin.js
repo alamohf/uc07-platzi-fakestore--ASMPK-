@@ -1,49 +1,39 @@
-// ─────────────────────────────────────────────────────────────
-//  CONFIGURAÇÃO DA API
-// ─────────────────────────────────────────────────────────────
-const URL_API = "https://api.allorigins.win/raw?url=https://api.escuelajs.co/api/v1/products";
+const URL_API =
+  "https://api.escuelajs.co/api/v1/products/";
 
-// ─────────────────────────────────────────────────────────────
-//  ESTADO DA APLICAÇÃO
-// ─────────────────────────────────────────────────────────────
 let produtos = [];
-let proximoId = null; // será definido após carregar da API
+let proximoId = null;
 let produtoEditandoId = null;
 let fotoBase64 = null;
 let paginaAtual = 1;
 
 const ITENS_POR_PAGINA = 5;
 
-// ─────────────────────────────────────────────────────────────
-//  ELEMENTOS DO DOM
-// ─────────────────────────────────────────────────────────────
-const tbody        = document.querySelector("tbody");
-const overlay      = document.getElementById("modalOverlay");
-const btnAdd       = document.querySelector(".btn-add");
-const btnFechar    = document.getElementById("btnFechar");
-const btnSubmit    = document.querySelector(".btn-submit");
-const inputBusca   = document.querySelector(".toolbar input");
+const tbody = document.querySelector("tbody");
+const overlay = document.getElementById("modalOverlay");
+const btnAdd = document.querySelector(".btn-add");
+const btnFechar = document.getElementById("btnFechar");
+const btnSubmit = document.querySelector(".btn-submit");
+const inputBusca = document.querySelector(".toolbar input");
 const selectFiltro = document.querySelector(".toolbar select");
-const modalTitulo  = document.querySelector(".modal h2");
-const modalSubtitle= document.querySelector(".modal-subtitle");
+const modalTitulo = document.querySelector(".modal h2");
+const modalSubtitle = document.querySelector(".modal-subtitle");
 
-const inputNome      = document.querySelector(".modal .form-group:nth-child(3) input");
-const inputPreco     = document.querySelector(".modal .form-row .form-group:first-child input");
-const selectCategoria= document.querySelector(".modal .form-row .form-group:last-child select");
+const inputNome = document.querySelector(
+  ".modal .form-group:nth-child(3) input",
+);
+const inputPreco = document.querySelector(
+  ".modal .form-row .form-group:first-child input",
+);
+const selectCategoria = document.querySelector(
+  ".modal .form-row .form-group:last-child select",
+);
 const inputDescricao = document.querySelector(".modal textarea");
 
 const paginacaoInfo = document.querySelector(".pagination span");
-const btnAnterior   = document.querySelector(".pagination button:first-of-type");
-const btnProximo    = document.querySelector(".pagination button:last-of-type");
+const btnAnterior = document.querySelector(".pagination button:first-of-type");
+const btnProximo = document.querySelector(".pagination button:last-of-type");
 
-// ─────────────────────────────────────────────────────────────
-//  FUNÇÃO CENTRAL — BUSCA NA API
-// ─────────────────────────────────────────────────────────────
-
-/**
- * Busca produtos da API REST e exibe na tabela.
- * Mapeia os campos da API para o formato interno da aplicação.
- */
 async function buscarProdutos() {
   mostrarStatusLoading("Buscando produtos da API…");
 
@@ -54,18 +44,16 @@ async function buscarProdutos() {
 
     const dados = await resposta.json();
 
-    // Mapeia resposta da API para o formato interno
     produtos = dados.map((p) => ({
-      id:        p.id,
-      nome:      p.title,
-      sku:       gerarSKU(p.title, p.id),
+      id: p.id,
+      nome: p.title,
+      sku: gerarSKU(p.title, p.id),
       categoria: p.category?.name || "Outros",
-      preco:     p.price,
+      preco: p.price,
       descricao: p.description || "",
-      img:       sanitizarImagem(p.images?.[0]),
+      img: sanitizarImagem(p.images?.[0]),
     }));
 
-    // Define o próximo ID local como máximo + 1
     proximoId = Math.max(...produtos.map((p) => p.id)) + 1;
 
     popularFiltrosCategorias();
@@ -73,7 +61,6 @@ async function buscarProdutos() {
     renderizarTabela();
     esconderStatus();
     mostrarToast(`✅ ${produtos.length} produtos carregados com sucesso!`);
-
   } catch (erro) {
     console.error("Erro ao buscar produtos:", erro);
     mostrarStatusErro(`⚠️ Falha ao conectar com a API: ${erro.message}`);
@@ -81,23 +68,18 @@ async function buscarProdutos() {
   }
 }
 
-/**
- * Sanitiza a URL de imagem retornada pela API.
- * A API às vezes retorna arrays JSON stringificados como string.
- */
 function sanitizarImagem(url) {
   if (!url) return "https://placehold.co/44x44/d7eaff/4d5d6c?text=📦";
   try {
     const parsed = JSON.parse(url);
     if (Array.isArray(parsed) && parsed[0]) return parsed[0];
   } catch (_) {}
-  return url.replace(/["\[\]]/g, "").trim() ||
-         "https://placehold.co/44x44/d7eaff/4d5d6c?text=📦";
+  return (
+    url.replace(/["\[\]]/g, "").trim() ||
+    "https://placehold.co/44x44/d7eaff/4d5d6c?text=📦"
+  );
 }
 
-/**
- * Exibe os produtos na tabela. Chamada pela buscarProdutos().
- */
 function exibirProdutos(lista) {
   tbody.innerHTML = "";
 
@@ -137,10 +119,6 @@ function exibirProdutos(lista) {
   });
 }
 
-// ─────────────────────────────────────────────────────────────
-//  STATUS / LOADING
-// ─────────────────────────────────────────────────────────────
-
 function mostrarStatusLoading(msg) {
   let bar = document.getElementById("statusApiBar");
   if (!bar) bar = criarStatusBar();
@@ -166,14 +144,11 @@ function criarStatusBar() {
   const bar = document.createElement("div");
   bar.id = "statusApiBar";
   // Insere logo acima da tabela
-  const tableCard = document.querySelector(".table-card") || tbody.closest("table");
+  const tableCard =
+    document.querySelector(".table-card") || tbody.closest("table");
   tableCard?.parentNode?.insertBefore(bar, tableCard);
   return bar;
 }
-
-// ─────────────────────────────────────────────────────────────
-//  FILTROS DINÂMICOS
-// ─────────────────────────────────────────────────────────────
 
 function popularFiltrosCategorias() {
   const categorias = [...new Set(produtos.map((p) => p.categoria))].sort();
@@ -186,12 +161,10 @@ function popularFiltrosCategorias() {
   });
 }
 
-// ─────────────────────────────────────────────────────────────
-//  CAMPO DE FOTO (dropzone)
-// ─────────────────────────────────────────────────────────────
-
 function criarCampoFoto() {
-  const primeiroFormGroup = document.querySelector(".modal .form-group:first-of-type");
+  const primeiroFormGroup = document.querySelector(
+    ".modal .form-group:first-of-type",
+  );
   if (!primeiroFormGroup || document.getElementById("dropzone")) return;
 
   const wrapper = document.createElement("div");
@@ -229,12 +202,13 @@ function criarCampoFoto() {
 }
 
 function inicializarEventosFoto() {
-  const inputFoto      = document.getElementById("inputFoto");
-  const dropzone       = document.getElementById("dropzone");
+  const inputFoto = document.getElementById("inputFoto");
+  const dropzone = document.getElementById("dropzone");
   const btnRemoverFoto = document.getElementById("btnRemoverFoto");
 
   dropzone.addEventListener("click", (e) => {
-    if (e.target === btnRemoverFoto || btnRemoverFoto.contains(e.target)) return;
+    if (e.target === btnRemoverFoto || btnRemoverFoto.contains(e.target))
+      return;
     inputFoto.click();
   });
   inputFoto.addEventListener("change", (e) => {
@@ -277,35 +251,31 @@ function mostrarPreviewFoto(file) {
 
 function limparFoto() {
   fotoBase64 = null;
-  const inputFoto          = document.getElementById("inputFoto");
-  const imgPreview         = document.getElementById("imgPreview");
-  const imgNome            = document.getElementById("imgNome");
-  const dropzonePlaceholder= document.getElementById("dropzonePlaceholder");
-  const dropzonePreview    = document.getElementById("dropzonePreview");
+  const inputFoto = document.getElementById("inputFoto");
+  const imgPreview = document.getElementById("imgPreview");
+  const imgNome = document.getElementById("imgNome");
+  const dropzonePlaceholder = document.getElementById("dropzonePlaceholder");
+  const dropzonePreview = document.getElementById("dropzonePreview");
 
-  if (inputFoto)           inputFoto.value = "";
-  if (imgPreview)          imgPreview.src = "";
-  if (imgNome)             imgNome.textContent = "";
-  if (dropzonePreview)     dropzonePreview.style.display = "none";
+  if (inputFoto) inputFoto.value = "";
+  if (imgPreview) imgPreview.src = "";
+  if (imgNome) imgNome.textContent = "";
+  if (dropzonePreview) dropzonePreview.style.display = "none";
   if (dropzonePlaceholder) dropzonePlaceholder.style.display = "flex";
 }
 
 function preencherFotoEdicao(img) {
   fotoBase64 = img;
-  const imgPreview         = document.getElementById("imgPreview");
-  const imgNome            = document.getElementById("imgNome");
-  const dropzonePlaceholder= document.getElementById("dropzonePlaceholder");
-  const dropzonePreview    = document.getElementById("dropzonePreview");
+  const imgPreview = document.getElementById("imgPreview");
+  const imgNome = document.getElementById("imgNome");
+  const dropzonePlaceholder = document.getElementById("dropzonePlaceholder");
+  const dropzonePreview = document.getElementById("dropzonePreview");
 
-  if (imgPreview)          imgPreview.src = img;
-  if (imgNome)             imgNome.textContent = "Imagem atual";
+  if (imgPreview) imgPreview.src = img;
+  if (imgNome) imgNome.textContent = "Imagem atual";
   if (dropzonePlaceholder) dropzonePlaceholder.style.display = "none";
-  if (dropzonePreview)     dropzonePreview.style.display = "flex";
+  if (dropzonePreview) dropzonePreview.style.display = "flex";
 }
-
-// ─────────────────────────────────────────────────────────────
-//  UTILITÁRIOS
-// ─────────────────────────────────────────────────────────────
 
 function formatarPreco(valor) {
   return Number(valor).toLocaleString("pt-BR", {
@@ -334,27 +304,29 @@ function mostrarToast(mensagem, tipo = "sucesso") {
   toast.textContent = mensagem;
   toast.className = `toast toast-${tipo} toast-visivel`;
   clearTimeout(toast._timer);
-  toast._timer = setTimeout(() => toast.classList.remove("toast-visivel"), 3000);
+  toast._timer = setTimeout(
+    () => toast.classList.remove("toast-visivel"),
+    3000,
+  );
 }
 
-// ─────────────────────────────────────────────────────────────
-//  FILTRO + RENDERIZAÇÃO DA TABELA
-// ─────────────────────────────────────────────────────────────
-
 function filtrarProdutos() {
-  const busca     = inputBusca.value.toLowerCase();
+  const busca = inputBusca.value.toLowerCase();
   const categoria = selectFiltro.value;
   return produtos.filter((p) => {
-    const matchBusca    = p.nome.toLowerCase().includes(busca) || p.sku.toLowerCase().includes(busca);
-    const matchCategoria= categoria === "Todas as Categorias" || p.categoria === categoria;
+    const matchBusca =
+      p.nome.toLowerCase().includes(busca) ||
+      p.sku.toLowerCase().includes(busca);
+    const matchCategoria =
+      categoria === "Todas as Categorias" || p.categoria === categoria;
     return matchBusca && matchCategoria;
   });
 }
 
 function renderizarTabela() {
-  const filtrados   = filtrarProdutos();
-  const total       = filtrados.length;
-  const totalPaginas= Math.max(1, Math.ceil(total / ITENS_POR_PAGINA));
+  const filtrados = filtrarProdutos();
+  const total = filtrados.length;
+  const totalPaginas = Math.max(1, Math.ceil(total / ITENS_POR_PAGINA));
 
   if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
 
@@ -365,18 +337,15 @@ function renderizarTabela() {
 
   paginacaoInfo.innerHTML = `Exibindo <strong>${pagina.length}</strong> de <strong>${total}</strong> produtos`;
   btnAnterior.disabled = paginaAtual === 1;
-  btnProximo.disabled  = paginaAtual >= totalPaginas;
+  btnProximo.disabled = paginaAtual >= totalPaginas;
 }
-
-// ─────────────────────────────────────────────────────────────
-//  MODAL — ABRIR / FECHAR
-// ─────────────────────────────────────────────────────────────
 
 function abrirModalNovo() {
   produtoEditandoId = null;
-  modalTitulo.textContent   = "Adicionar Novo Produto";
-  modalSubtitle.textContent = "Insira os detalhes do produto para listar na vitrine.";
-  btnSubmit.textContent     = "Criar Anúncio de Produto";
+  modalTitulo.textContent = "Adicionar Novo Produto";
+  modalSubtitle.textContent =
+    "Insira os detalhes do produto para listar na vitrine.";
+  btnSubmit.textContent = "Criar Anúncio de Produto";
   limparFormulario();
   overlay.classList.add("active");
   criarCampoFoto();
@@ -387,13 +356,13 @@ function abrirModalEditar(id) {
   const prod = produtos.find((p) => p.id === id);
   if (!prod) return;
   produtoEditandoId = id;
-  modalTitulo.textContent   = "Editar Produto";
+  modalTitulo.textContent = "Editar Produto";
   modalSubtitle.textContent = "Atualize os detalhes do produto.";
-  btnSubmit.textContent     = "Salvar Alterações";
-  inputNome.value           = prod.nome;
-  inputPreco.value          = prod.preco;
-  selectCategoria.value     = prod.categoria;
-  inputDescricao.value      = prod.descricao;
+  btnSubmit.textContent = "Salvar Alterações";
+  inputNome.value = prod.nome;
+  inputPreco.value = prod.preco;
+  selectCategoria.value = prod.categoria;
+  inputDescricao.value = prod.descricao;
   overlay.classList.add("active");
   criarCampoFoto();
   preencherFotoEdicao(prod.img);
@@ -409,26 +378,24 @@ function fecharModal() {
 }
 
 function limparFormulario() {
-  inputNome.value           = "";
-  inputPreco.value          = "";
-  selectCategoria.value     = selectCategoria.options[0]?.value || "";
-  inputDescricao.value      = "";
+  inputNome.value = "";
+  inputPreco.value = "";
+  selectCategoria.value = selectCategoria.options[0]?.value || "";
+  inputDescricao.value = "";
   limparFoto();
 }
 
-// ─────────────────────────────────────────────────────────────
-//  VALIDAÇÃO
-// ─────────────────────────────────────────────────────────────
-
 function limparErros() {
-  document.querySelectorAll(".campo-erro").forEach((el) => el.classList.remove("campo-erro"));
+  document
+    .querySelectorAll(".campo-erro")
+    .forEach((el) => el.classList.remove("campo-erro"));
   document.querySelectorAll(".msg-erro").forEach((el) => el.remove());
 }
 
 function mostrarErro(input, mensagem) {
   input.classList.add("campo-erro");
   const msg = document.createElement("span");
-  msg.className   = "msg-erro";
+  msg.className = "msg-erro";
   msg.textContent = mensagem;
   input.parentNode.appendChild(msg);
 }
@@ -451,31 +418,36 @@ function validarFormulario() {
   return valido;
 }
 
-// ─────────────────────────────────────────────────────────────
-//  SALVAR / EXCLUIR
-// ─────────────────────────────────────────────────────────────
-
 function salvarProduto() {
   if (!validarFormulario()) return;
 
-  const nome      = inputNome.value.trim();
-  const preco     = parseFloat(inputPreco.value);
+  const nome = inputNome.value.trim();
+  const preco = parseFloat(inputPreco.value);
   const categoria = selectCategoria.value;
   const descricao = inputDescricao.value.trim();
-  const imgFinal  = fotoBase64 || "https://placehold.co/44x44/d7eaff/4d5d6c?text=📦";
+  const imgFinal =
+    fotoBase64 || "https://placehold.co/44x44/d7eaff/4d5d6c?text=📦";
 
   if (produtoEditandoId !== null) {
     const prod = produtos.find((p) => p.id === produtoEditandoId);
-    prod.nome      = nome;
-    prod.preco     = preco;
+    prod.nome = nome;
+    prod.preco = preco;
     prod.categoria = categoria;
     prod.descricao = descricao;
-    prod.img       = imgFinal;
+    prod.img = imgFinal;
     mostrarToast(`✅ "${nome}" atualizado com sucesso!`);
   } else {
-    const id  = proximoId++;
+    const id = proximoId++;
     const sku = gerarSKU(nome, id);
-    produtos.push({ id, nome, sku, categoria, preco, descricao, img: imgFinal });
+    produtos.push({
+      id,
+      nome,
+      sku,
+      categoria,
+      preco,
+      descricao,
+      img: imgFinal,
+    });
     mostrarToast(`✅ "${nome}" adicionado com sucesso!`);
   }
 
@@ -493,41 +465,51 @@ function excluirProduto(id) {
   renderizarTabela();
 }
 
-// ─────────────────────────────────────────────────────────────
-//  EVENTOS
-// ─────────────────────────────────────────────────────────────
-
 document.querySelectorAll("nav a").forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
-    document.querySelectorAll("nav a").forEach((l) => l.classList.remove("active"));
+    document
+      .querySelectorAll("nav a")
+      .forEach((l) => l.classList.remove("active"));
     link.classList.add("active");
   });
 });
 
 btnAdd.addEventListener("click", abrirModalNovo);
 btnFechar.addEventListener("click", fecharModal);
-overlay.addEventListener("click", (e) => { if (e.target === overlay) fecharModal(); });
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) fecharModal();
+});
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && overlay.classList.contains("active")) fecharModal();
 });
 btnSubmit.addEventListener("click", salvarProduto);
 
 tbody.addEventListener("click", (e) => {
-  const btnEditar  = e.target.closest(".btn-editar");
+  const btnEditar = e.target.closest(".btn-editar");
   const btnExcluir = e.target.closest(".btn-excluir");
-  if (btnEditar)  abrirModalEditar(Number(btnEditar.dataset.id));
+  if (btnEditar) abrirModalEditar(Number(btnEditar.dataset.id));
   if (btnExcluir) excluirProduto(Number(btnExcluir.dataset.id));
 });
 
-inputBusca.addEventListener("input",    () => { paginaAtual = 1; renderizarTabela(); });
-selectFiltro.addEventListener("change", () => { paginaAtual = 1; renderizarTabela(); });
-btnAnterior.addEventListener("click",   () => { if (paginaAtual > 1) { paginaAtual--; renderizarTabela(); } });
-btnProximo.addEventListener("click",    () => { paginaAtual++; renderizarTabela(); });
-
-// ─────────────────────────────────────────────────────────────
-//  ESTILOS INJETADOS
-// ─────────────────────────────────────────────────────────────
+inputBusca.addEventListener("input", () => {
+  paginaAtual = 1;
+  renderizarTabela();
+});
+selectFiltro.addEventListener("change", () => {
+  paginaAtual = 1;
+  renderizarTabela();
+});
+btnAnterior.addEventListener("click", () => {
+  if (paginaAtual > 1) {
+    paginaAtual--;
+    renderizarTabela();
+  }
+});
+btnProximo.addEventListener("click", () => {
+  paginaAtual++;
+  renderizarTabela();
+});
 
 (function injetarEstilos() {
   const style = document.createElement("style");
@@ -575,7 +557,4 @@ btnProximo.addEventListener("click",    () => { paginaAtual++; renderizarTabela(
   document.head.appendChild(style);
 })();
 
-// ─────────────────────────────────────────────────────────────
-//  INICIALIZAÇÃO — chama a API ao carregar a página
-// ─────────────────────────────────────────────────────────────
 buscarProdutos();

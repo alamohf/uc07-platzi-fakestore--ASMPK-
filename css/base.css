@@ -64,7 +64,7 @@ nav a:hover {
 }
 
 nav a.active {
-  background: #6bfe9c;
+  background: #6ba8fe;
   opacity: 1;
   font-weight: bold;
 }
@@ -100,7 +100,7 @@ nav a.active {
 .btn-add {
   width: 100%;
   padding: 10px;
-  background: #006a35;
+  background: #04064a;
   color: #cdffd4;
   border: none;
   border-radius: 8px;
@@ -110,7 +110,7 @@ nav a.active {
 }
 
 .btn-add:hover {
-  background: #005c2d;
+  background: #2a1e88;
 }
 
 main {
@@ -332,7 +332,7 @@ footer .links a {
 }
 
 footer .links a:hover {
-  color: #6bfe9c;
+  color: #6ba8fe;
 }
 
 .modal-overlay {
@@ -431,7 +431,7 @@ footer .links a:hover {
 .btn-submit {
   width: 100%;
   padding: 14px;
-  background: #006a35;
+  background: #05006a;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -443,7 +443,7 @@ footer .links a:hover {
 }
 
 .btn-submit:hover {
-  background: #005c2d;
+  background: #1c2796;
 }
 
 
