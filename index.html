@@ -64,9 +64,7 @@
             </div>
         </aside>
         
-        <section class="vitrine">
-            <h2>Nossos Produtos</h2>
-
+        <section class="secao-vitrine">
             <div id="produto-grid">
                 <article class="card-produto">
                     <img src= "https://picsum.photos/300/200?random=1" alt="Produto exemplo" class="imagem-produto">
@@ -79,15 +77,17 @@
                     </div>
                 </article>
 
-                 <article class="card-produto">
-                    <img src="https://picsum.photos/300/200?random=2" alt="Produto exemplo" class="imagem-produto">
-                    <div class="info-produto">
-                        <h3 class="titulo-produto">Produto Exemplo 2</h3>
-                        <p class="descricao-produto">Qualidade e estilo em um só produto.</p>
-                        <div class="preco-produto">R$ 149,90</div>
-                        <button class="btn-comprar">Comprar</button>
+                <nav class="paginacao">
+                    <button id="btn-anterior" class="botao-pagina" disabled>
+                        <span class="material-symbols-outlined">Página_Anterior</span>
+                    </button>
+                    <div class="numeros-pagina">
+                        <span id="indicador-pagina" class="num-pagina ativo">1</span>
                     </div>
-                </article>
+                    <button id="btn-proximo" class="botao-pagina">
+                        <span class="material-symbols-outlined">Página_Próxima</span>
+                    </button>
+                </nav>
         </section>
     </main>
 
