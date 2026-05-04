@@ -1,3 +1,4 @@
+PRODUTO 
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -11,72 +12,33 @@
   </head>
 
   <body>
-    <!-- CABEÇALHO -->
     <header class="header">
       <h1>FakeStore</h1>
       <nav>
         <a href="index.html">Vitrine</a>
-        <a href="admin.html">Cadastrar Produto</a>
-        <a href="perfil.html">Minha Conta</a>
+        <div id="menu-usuario" style="display: inline-block"></div>
+
+        <a href="carrinho.html"
+          >Carrinho <span id="carrinho-contador">0</span></a
+        >
       </nav>
     </header>
 
     <main>
-      <!-- VOLTAR -->
       <section class="voltar">
         <a href="index.html">← Voltar à Vitrine</a>
       </section>
 
-      <!-- DETALHE DO PRODUTO -->
-      <main>
-  <section id="produto-detalhe" class="produto">
-    <p class="loading">Carregando produto...</p>
-  </section>
-
-  <section id="relacionados" class="relacionados">
-    <h2>Produtos Relacionados</h2>
-    
-    <div class="lista-relacionados">
-      </div>
-  </section>
-</main>
-          <!-- INFORMAÇÕES -->
-          <div class="produto-info">
-            <h2 class="produto-titulo">Nome do Produto</h2>
-
-            <p class="preco">R$ 00,00</p>
-
-            <p class="descricao">
-              Descrição do produto aqui (estático por enquanto)
-            </p>
-
-            <span class="categoria">Categoria</span>
-
-            <button class="btn-comprar">Comprar</button>
-          </div>
-        </div>
+      <section id="detalhe-produto" class="produto">
+        <p class="loading">Carregando produto...</p>
       </section>
 
-      <!-- RELACIONADOS -->
       <section id="relacionados" class="relacionados">
         <h2>Produtos Relacionados</h2>
 
-        <!-- PRODUTO NÃO ENCONTRADO -->
-        <p class="empty">Nenhum produto encontrado</p>
-
-        <div class="lista-relacionados">
-          <!-- CARD EXEMPLO -->
-          <div class="card">
-            <img src="foto dos produtos " alt="Produto" />
-            <h3>Produto Exemplo</h3>
-            <p class="preco">R$ 00,00</p>
-            <button>Ver Detalhes</button>
-          </div>
-        </div>
+        <div id="grade-relacionados"></div>
       </section>
     </main>
-
-    <!--LINK DA API -->
 
     <footer class="footer">
       <p>
@@ -88,13 +50,24 @@
         Documentação:
         <a class="api-doc-link" href="#" target="_blank"></a>
       </p>
+      <p class="copyright">&copy; 2026 - Entrega Final 04/05</p>
     </footer>
 
-    <!-- JavaScript-->
+    <div id="toast-container"></div>
+    <div id="modal-fundo" class="modal-fundo">
+      <div class="modal-conteudo">
+        <p id="modal-mensagem"></p>
+        <button id="modal-btn-confirmar">Sim</button>
+        <button id="modal-btn-cancelar">Não</button>
+      </div>
+    </div>
 
     <script src="js/api/config.js"></script>
+    <script src="js/api/auth.js"></script>
     <script src="js/api/produtos.js"></script>
+    <script src="js/ui/carrinho.js"></script>
     <script src="js/ui/componentes.js"></script>
     <script src="js/ui/detalhe.js"></script>
+</body>
   </body>
 </html>
