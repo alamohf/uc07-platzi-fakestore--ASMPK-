@@ -1,132 +1,122 @@
-const containerDetalhe = document.querySelector("#produto-detalhe");
-const containerRelacionados = document.querySelector(".lista-relacionados");
+/**
+ * detalhe.js — Tela de detalhe do produto
+ * Responsável: Dev 2 (Maria Clara)
+ *
+ * Endpoints implementados:
+ *   GET /products/:id
+ *   GET /products/:id/related
+ */
 
-function extrairUrlImagem(produto) {
-  let imagens = produto.images;
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarPaginaDeDetalhe();
+});
 
-  // 1. Tratamento caso a API envie uma string em vez de um array
-  if (typeof imagens === "string") {
-    try {
-      imagens = JSON.parse(imagens);
-    } catch (e) {
-      // Se não for um JSON válido, mantemos como está para o replace limpar depois
-    }
+async function inicializarPaginaDeDetalhe() {
+  var parametrosUrl = new URLSearchParams(window.location.search);
+  var idProduto = parametrosUrl.get("id");
+
+  if (!idProduto) {
+    exibirMensagemDeErro(
+      "detalhe-produto",
+      "ID do produto não informado na URL.",
+    );
+    return;
   }
 
-  // 2. Pega a primeira imagem ou tenta a imagem da categoria como plano B
-  let urlBruta = (Array.isArray(imagens) && imagens.length > 0) 
-    ? imagens[0] 
-    : (produto.category?.image || "");
-
-  // 3. LIMPEZA TOTAL (Remove [ ] " \ e espaços extras)
-  let urlLimpa = urlBruta.replace(/[\[\]"\\ ]/g, "");
-
-  // 4. VALIDAÇÃO DE PROTOCOLO
-  // Se não começar com http ou for apenas texto (comum nessa API), usa um placeholder estável
-  if (!urlLimpa.startsWith("http")) {
-    return "https://picsum.photos/600/400"; 
-  }
-
-  return urlLimpa;
+  await carregarDetalheDoProduto(idProduto);
+  await carregarProdutosRelacionadosNaTela(idProduto);
 }
 
+async function carregarDetalheDoProduto(idProduto) {
+  exibirCarregando("detalhe-produto");
 
-// PEGAR ID DA URL
-
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id") || 4;
-
-// CARREGAR PRODUTO
-
-async function carregarProduto(id) {
   try {
-    containerDetalhe.innerHTML = renderLoading();
-
-    var produto = await buscarProdutoPorId(id);
-    renderProduto(produto);
+    var produto = await buscarProdutoPeloId(idProduto);
+    renderizarDetalheDoProduto(produto);
   } catch (erro) {
-    containerDetalhe.innerHTML = renderEmpty();
-    mostrarToast("Erro ao carregar produto");
-    console.error(erro);
+    exibirMensagemDeErro(
+      "detalhe-produto",
+      "Não foi possível carregar o produto: " + erro.message,
+    );
   }
 }
 
-// RENDER PRODUTO
+function renderizarDetalheDoProduto(produto) {
+  var container = document.getElementById("detalhe-produto");
+  if (!container) return;
 
-function renderProduto(produto) {
- 
-  let imagens = produto.images;
+  var urlImagem = extrairUrlDaImagem(produto.images);
+  var nomeCategoria = produto.category
+    ? produto.category.name
+    : "Sem categoria";
 
-if (typeof imagens === "string") {
+  container.innerHTML =
+    '<div class="detalhe-container">' +
+    '  <img src="' +
+    urlImagem +
+    '" alt="' +
+    produto.title +
+    '"' +
+    '       class="detalhe-imagem-principal"' +
+    "       onerror=\"this.src='https://picsum.photos/seed/fallback/400/400'\">" +
+    '  <div class="detalhe-informacoes">' +
+    '    <p class="detalhe-categoria">' +
+    nomeCategoria +
+    "</p>" +
+    '    <h1 class="detalhe-titulo">' +
+    produto.title +
+    "</h1>" +
+    '    <p class="detalhe-preco">R$ ' +
+    Number(produto.price).toFixed(2) +
+    "</p>" +
+    '    <p class="detalhe-descricao">' +
+    produto.description +
+    "</p>" +
+    '    <div class="detalhe-acoes">' +
+    '      <button class="btn btn-primario btn-grande"' +
+    '              onclick="adicionarProdutoAoCarrinho(' +
+    produto.id +
+    ", '" +
+    produto.title.replace(/'/g, "") +
+    "', " +
+    produto.price +
+    ", '" +
+    urlImagem +
+    "')\">" +
+    "        🛒 Adicionar ao carrinho" +
+    "      </button>" +
+    '      <a href="carrinho.html" class="btn btn-secundario btn-grande">Ver carrinho</a>' +
+    "    </div>" +
+    "  </div>" +
+    "</div>";
+}
+
+async function carregarProdutosRelacionadosNaTela(idProduto) {
+  var container = document.getElementById("grade-relacionados");
+  if (!container) return;
+
+  exibirCarregando("grade-relacionados");
+
   try {
-    imagens = JSON.parse(imagens);
-  } catch {
-    imagens = [];
-  }
-}
+    var relacionados = await buscarProdutosRelacionados(idProduto);
 
-const imagem = imagens?.[0]?.replace (/[\[\]"]/g, "") || 
-"https://via.placeholder.com/300";
-
-  containerDetalhe.innerHTML = `
-    <div class="produto-container">
-
-      <div class="produto-imagem">
-        <img 
-          src="${imagem}" 
-          alt="${produto.title}"
-          onerror="this.src='https://via.placeholder.com/300'"
-        >
-      </div>
-
-      <div class="produto-info">
-        <h2 class="produto-titulo">${produto.title}</h2>
-
-        <p class="preco">R$ ${produto.price}</p>
-
-        <p class="descricao">${produto.description}</p>
-
-        <span class="categoria">${produto.category?.name || "Sem categoria"}</span>
-
-        <button class="btn-comprar" 
-    onclick="comprarProduto()">
-          Comprar
-        </button>
-      </div>
-
-    </div>
-  `;
-}
-
-// AÇÃO DE COMPRA
-
-function comprarProduto() {
-  mostrarToast("Produto adicionado ao carrinho!");
-}
-
-// CARREGAR RELACIONADOS
-
-async function carregarRelacionados(id) {
-
-  try {
-    containerRelacionados.innerHTML = renderLoading();
-
-    var produtos = await buscarProdutosRelacionados(id);
-
-    if (!produtos.length) {
-      containerRelacionados.innerHTML = renderEmpty();
+    if (!relacionados || relacionados.length === 0) {
+      exibirEstadoVazio(
+        "grade-relacionados",
+        "Sem produtos relacionados",
+        "Explore outros produtos na vitrine.",
+      );
       return;
     }
 
-    containerRelacionados.innerHTML = produtos.map(renderCard).join("");
+    container.innerHTML =
+      '<div class="grade-produtos">' +
+      relacionados.slice(0, 4).map(gerarHtmlDoCard).join("") +
+      "</div>";
   } catch (erro) {
-      containerRelacionados.innerHTML = renderEmpty();
-    mostrarToast("Erro ao carregar relacionados");
-    console.error(erro);
+    exibirMensagemDeErro(
+      "grade-relacionados",
+      "Não foi possível carregar os relacionados.",
+    );
   }
 }
-
-// INICIAR
-
-  carregarProduto(id);
-  carregarRelacionados(id);
