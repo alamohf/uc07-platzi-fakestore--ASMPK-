@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feira Digital • Painel Administrativo</title>
+    <link rel="stylesheet" href="/css/base.css" />
+  </head>
+
+  <body>
+
+    <aside>
+      <div class="brand">
+        <h2>Console de Admin</h2>
+        <p>Gestão de Lojistas</p>
+      </div>
+
+      <nav>
+        <a href="#">📊 Painel</a>
+        <a href="#" class="active">📦 Estoque</a>
+        <a href="#">🚚 Pedidos</a>
+        <a href="#">📈 Análise</a>
+        <a href="#">⚙️ Configurações</a>
+      </nav>
+
+      <div>
+        <div class="user-card">
+          <img
+            src="https://media-for2-2.cdn.whatsapp.net/v/t61.24694-24/627704017_897359776628442_6326886005196826163_n.jpg?ccb=11-4&oh=01_Q5Aa4QGFtJWyXuDtVCj34JjMEf5Cor4qhDi_1vi2zFtlZn31CA&oe=69F688FB&_nc_sid=5e03e0&_nc_cat=109
+            alt="Foto do Admin"
+          />
+          <div>
+            <div class="name">Pablo Alejandro</div>
+            <div class="role">Admin do Sistema</div>
+          </div>
+        </div>
+        <button class="btn-add">+ Adicionar Produto</button>
+      </div>
+    </aside>
+
+    <main>
+      <h1>Gestão de Estoque</h1>
+      <p class="subtitle">Gerencie os produtos do seu catálogo.</p>
+
+      <div class="toolbar">
+        <input type="text" placeholder="Buscar produtos..." />
+        <select>
+          <option>Todas as Categorias</option>
+          <option>Relojoaria</option>
+          <option>Esportivo</option>
+          <option>Áudio</option>
+          <option>Viagem</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="prod-img">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3cHwvPerJaboN5m7GRxl2fxM0TsMmDoUSzX8MLkJHioRLzwjHSRzPDL7kAIZOytZMzcjov63HlNQgJ1PMKbgEjzB_am3HEiOcS6fDi5TDoStCAdCZ4bkB1Vu1fC6WGegfAg0iHE_yVz0-msD02GyOP1DoEY4MnkJGxrA0vihseC7UNLsItB6uIOZY4EEKasnkEHG-IFeqH_qFHp24Kfj38BU3BnBPea1Gp-i6talvwx006XfaXEFxhjKtw2M1KrRqfGVKVODPRnHJ"
+                    alt="Relógio"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="prod-name">Monolith Watch v1</div>
+                <div class="prod-sku">SKU: MW-001</div>
+              </td>
+              <td><span class="badge">Relojoaria</span></td>
+              <td class="price">R$ 1.240,00</td>
+              <td class="actions">
+                <button title="Editar">✏️</button>
+                <button class="del" title="Excluir">🗑️</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="prod-img">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD4wIhBckhUnWIyytBiMoqub-UbtCcokKokPwZSPh1i2Vl7OR6ElNvcxMtKax6sWNgC7kfsOAFiRFJH2WeX9LczDetuedy0sAlWA5qytCxE4-J7jgKiEKMRuB6G2RU2PMkshSLLkdlErn_3bcQsMx8Yud_0G00RsWz3Akp4hbW_Ab-kZ0WYOhKcNWtf0vV5L49SCGSUl-X_pAIEx7O6NDvApJ_TT-xfeLjz_0-fXQAnLkbqDdcFkk5LQjshwdBGw6fc2O1CCT0MVce"
+                    alt="Tênis"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="prod-name">AeroStride Runner</div>
+                <div class="prod-sku">SKU: AS-992</div>
+              </td>
+              <td><span class="badge">Esportivo</span></td>
+              <td class="price">R$ 185,00</td>
+              <td class="actions">
+                <button title="Editar">✏️</button>
+                <button class="del" title="Excluir">🗑️</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="prod-img">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQCOuyXt9945qoa7qxZD59sgGVXcb8ZlbYnB7gGDyKJgisqCoHO73bUC-sJ9NERV9dut5vzfYsuZjW5YFSUiLtidWTgFObzw0FTS6PKHs5bR-dfkNNhqar_SW5Q1__w2kF3n9F06Fw2iJh_q_PzcnLt_C5QTnDER1Ex7LE8xTeDAAooDaAMUR5d7a-MiKTgQXiK_ZZRurOXZL6GEvukJG8VtNhpFZjhvHcfPQfdJwKui0jE-WXHCtp3G89mOx28duhwpfZ3PbU8vr"
+                    alt="Fone"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="prod-name">Sonic Zenith Pro</div>
+                <div class="prod-sku">SKU: SZ-104</div>
+              </td>
+              <td><span class="badge">Áudio</span></td>
+              <td class="price">R$ 420,00</td>
+              <td class="actions">
+                <button title="Editar">✏️</button>
+                <button class="del" title="Excluir">🗑️</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="prod-img">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx8IGazfFBPjcAwqt2SfZJMe2yMlRLK36G2iqR6KhQdKPapwS5DNvF3oo1zXeYr9JjKoMsdGV4PXrghYswIIUIB3Ytmyhfls8ta-WHGVgxTWXM6EjxbzJ-WqAlvJhP1AM45JHze8o4IrZvQ1xe2PXL0pKV4rbkd3Z_zZn89F8v4_B0Gt7XiEMxqTE7xXXed9KgJoiaKdCiNXmWR4WdHaYnpj-he1iRGGrhvgaLtxoDdIfCjI4z03GdKxcnicVKi9J1O4R0pDxnJ-33"
+                    alt="Mochila"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="prod-name">Nomad Leather Pack</div>
+                <div class="prod-sku">SKU: NL-042</div>
+              </td>
+              <td><span class="badge">Viagem</span></td>
+              <td class="price">R$ 310,00</td>
+              <td class="actions">
+                <button title="Editar">✏️</button>
+                <button class="del" title="Excluir">🗑️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span
+            >Exibindo <strong>4</strong> de <strong>124</strong> produtos</span
+          >
+          <div>
+            <button disabled>Anterior</button>
+            <button>Próximo</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <h2>Adicionar Novo Produto</h2>
+        <p class="modal-subtitle">
+          Insira os detalhes do produto para listar na vitrine.
+        </p>
+
+        <div class="form-group">
+          <label>NOME DO PRODUTO</label>
+          <input type="text" placeholder="ex: Cronógrafo de Precisão" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>PREÇO (R$)</label>
+            <input type="number" placeholder="0,00" />
+          </div>
+          <div class="form-group">
+            <label>CATEGORIA</label>
+            <select>
+              <option>Relojoaria</option>
+              <option>Esportivo</option>
+              <option>Áudio</option>
+              <option>Viagem</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>DESCRIÇÃO</label>
+          <textarea placeholder="Descreva o artesanato do item..."></textarea>
+        </div>
+
+        <button class="btn-submit">Criar Anúncio de Produto</button>
+        <button class="btn-cancel" id="btnFechar">Cancelar</button>
+      </div>
+    </div>
+
+    
+    <footer>
+      <div>
+        <h3>The Precision Merchant</h3>
+        <div class="copy">
+          © 2024 The Precision Merchant. Todos os direitos reservados.
+        </div>
+      </div>
+      <div class="links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Serviço</a>
+        <a href="#">Envio</a>
+        <a href="#">Fale Conosco</a>
+      </div>
+    </footer>
+
+    <script>
+      const overlay = document.getElementById("modalOverlay");
+      document
+        .querySelector(".btn-add")
+        .addEventListener("click", () => overlay.classList.add("active"));
+      document
+        .getElementById("btnFechar")
+        .addEventListener("click", () => overlay.classList.remove("active"));
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) overlay.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>
