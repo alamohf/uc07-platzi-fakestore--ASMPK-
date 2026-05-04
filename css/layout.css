@@ -290,12 +290,14 @@ a {
 /* --- Sidebar --- */
 .sidebar {
   flex-direction: column;
-  width: 16rem;
+  width: 14rem;
   flex-shrink: 0;
   position: sticky;
   top: 6rem;
   height: fit-content;
   border-radius: 0.5rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
 }
 
 .sidebar-header {
@@ -323,17 +325,17 @@ a {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  color: var(--on-surface);
+  color: #21303e;
   opacity: 0.6;
   border-radius: 0.375rem;
   transition: all 0.3s;
 }
 .nav-item:hover {
-  background-color: var(--surface-bright);
+  background-color: #f2f7ff;
 }
 .nav-item.active {
-  background-color: var(--primary-fixed);
-  color: var(--on-surface);
+  background-color: #6bfe9c;
+  color: #21303e;
   opacity: 1;
 }
 
@@ -344,36 +346,45 @@ a {
 }
 
 /* --- Botões --- */
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--on-primary);
-  padding: 0.75rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 700;
+.btn-primary-sidebar {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  transition: transform 0.2s;
+  background-color: #006b3f;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+  padding: 0.75rem 2rem;
+  margin-top: 2rem;
 }
 .btn-primary:hover {
   transform: scale(0.98);
 }
 
 .btn-secondary {
-  background-color: var(--surface-container-low);
-  color: var(--on-surface);
+  background-color: #e7f2ff;
+  color: #21303e;
   padding: 0.75rem 2rem;
   border-radius: 0.375rem;
   font-weight: 700;
   font-size: 0.875rem;
   transition: background-color 0.2s;
+  border: none;
 }
 .btn-secondary:hover {
-  background-color: var(--surface-container-high);
+  background-color: #cfe5fc;
 }
 
 .link-primary {
-  color: var(--primary);
+  color: #006a35;
   font-weight: 700;
   font-size: 0.875rem;
 }
@@ -391,7 +402,7 @@ a {
 
 /* --- Perfil Card --- */
 .profile-card {
-  background-color: var(--surface-container-lowest);
+  background-color: #ffffff;
   border-radius: 0.75rem;
   padding: 2rem;
   position: relative;
@@ -405,7 +416,7 @@ a {
   right: -5rem;
   width: 16rem;
   height: 16rem;
-  background-color: var(--surface-container-low);
+  background-color: #e7f2ff;
   border-radius: 50%;
   opacity: 0.5;
 }
@@ -425,44 +436,42 @@ a {
   height: 8rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--surface);
+  border: 4px solid #f2f7ff;
 }
 .verified-badge {
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
-  background-color: var(--primary-fixed);
-  color: var(--on-primary-fixed);
+  background-color: #6bfe9c;
+  color: #004a23;
   padding: 0.5rem;
   border-radius: 50%;
-  border: 2px solid var(--surface);
+  border: 2px solid #f2f7ff;
   display: flex;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-details {
-  text-align: center;
   flex-grow: 1;
 }
 .profile-label {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--primary);
+  color: #006a35;
   font-weight: 700;
 }
 .profile-details h1 {
   font-size: 2.25rem;
   font-weight: 900;
-  font-family: var(--font-headline);
+  font-family: "Manrope", sans-serif;
   margin: 0.25rem 0 0.5rem 0;
 }
 .profile-meta {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 1rem;
-  color: var(--on-surface-variant);
+  color: #4d5d6c;
   font-size: 0.875rem;
 }
 .profile-meta span {
@@ -475,11 +484,14 @@ a {
   opacity: 0.3;
 }
 
+.thead {
+  background-color: #e7f2ff;
+}
+
 .profile-actions {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  width: 100%;
 }
 .edit-btn {
   display: flex;
@@ -499,11 +511,11 @@ a {
 .section-header h2 {
   font-size: 1.5rem;
   font-weight: 800;
-  font-family: var(--font-headline);
+  font-family: "Manrope", sans-serif;
 }
 
 .table-container {
-  background-color: var(--surface-container-lowest);
+  background-color: #ffffff;
   border-radius: 0.75rem;
   overflow-x: auto;
 }
@@ -513,8 +525,8 @@ a {
   border-collapse: collapse;
 }
 .orders-table th {
-  background-color: var(--surface-container-low);
-  color: var(--on-surface-variant);
+  background-color: #e7f2ff;
+  color: #4d5d6c;
   padding: 1rem 1.5rem;
   font-size: 0.75rem;
   font-weight: 700;
@@ -523,17 +535,17 @@ a {
 }
 .orders-table td {
   padding: 1.5rem;
-  border-bottom: 1px solid var(--surface);
+  border-bottom: 1px solid #f2f7ff;
 }
 .orders-table tr:hover {
-  background-color: var(--surface-bright);
+  background-color: #f2f7ff;
 }
 
 .order-id {
   font-family: monospace;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--primary);
+  color: #006a35;
 }
 .product-cell {
   display: flex;
@@ -543,12 +555,12 @@ a {
 .product-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: var(--surface-container-low);
+  background-color: #e7f2ff;
   border-radius: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--on-surface-variant);
+  color: #4d5d6c;
 }
 .product-name {
   font-size: 0.875rem;
@@ -556,7 +568,7 @@ a {
 }
 .product-category {
   font-size: 0.625rem;
-  color: var(--on-surface-variant);
+  color: #4d5d6c;
   text-transform: uppercase;
 }
 .order-total {
@@ -577,22 +589,22 @@ a {
 }
 .badge-shipped,
 .badge-delivered {
-  background-color: var(--secondary-container);
-  color: var(--on-secondary-container);
+  background-color: #72fbbd;
+  color: #005e3e;
 }
 .badge-processing {
-  background-color: var(--surface-container-high);
-  color: var(--on-surface-variant);
+  background-color: #cfe5fc;
+  color: #4d5d6c;
 }
 
 /* --- Grid de Status (Bento) --- */
 .stats-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 .stat-card {
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -600,20 +612,20 @@ a {
   height: 10rem;
 }
 .bg-high {
-  background-color: var(--surface-container-high);
+  background-color: #e7f2ff;
 }
 .bg-primary-dark {
   background-color: #006a35;
 }
 .bg-highest {
-  background-color: var(--surface-container-highest);
+  background-color: #e7f2ff;
 }
 
 .stat-icon {
   font-size: 1.875rem;
 }
 .text-primary {
-  color: var(--primary);
+  color: #006a35;
 }
 .text-light-green {
   color: #6bfe9c;
@@ -625,14 +637,14 @@ a {
 .stat-value {
   font-size: 1.875rem;
   font-weight: 900;
-  font-family: var(--font-headline);
+  font-family: "Manrope", sans-serif;
 }
 .stat-label {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--on-surface-variant);
+  color: #4d5d6c;
 }
 
 /* --- Footer --- */
@@ -653,7 +665,7 @@ a {
   font-size: 1.25rem;
   font-weight: 700;
   color: #f2f7ff;
-  font-family: var(--font-headline);
+  font-family: "Manrope", sans-serif;
   margin-bottom: 1rem;
 }
 .footer-links {
@@ -676,37 +688,4 @@ a {
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-/* --- Mobile Nav --- */
-.mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--surface-container-lowest);
-  display: flex;
-  justify-content: space-around;
-  padding: 0.75rem 0;
-  box-shadow: 0 -4px 24px rgba(33, 48, 62, 0.06);
-  z-index: 50;
-}
-.mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  opacity: 0.6;
-}
-.mobile-nav-item span:last-child {
-  font-size: 0.625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.mobile-nav-item.active {
-  opacity: 1;
-  color: var(--primary);
-}
-.mobile-nav-item.active .material-symbols-outlined {
-  font-variation-settings: "FILL" 1;
 }
