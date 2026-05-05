@@ -10,10 +10,9 @@
 
 const Carrinho = {
   CHAVE: 'carrinho',
-  ESTOQUE_MAX: 10, // Limite simulado por produto
+  ESTOQUE_MAX: 10,
 
-  // ---- CORE DE DADOS ----
-
+ 
   obterItens() {
     try {
       const json = localStorage.getItem(this.CHAVE);
@@ -33,7 +32,6 @@ const Carrinho = {
     }
   },
 
-  // ---- OPERAÇÕES ----
 
   adicionar(produto) {
     let carrinho = this.obterItens();
@@ -84,8 +82,7 @@ const Carrinho = {
     this.atualizarInterface();
   },
 
-  // ---- CÁLCULOS (Getters) ----
-
+ 
   get totalFinanceiro() {
     return this.obterItens().reduce((acc, item) => acc + (item.price * item.quantidade), 0);
   },
@@ -94,27 +91,23 @@ const Carrinho = {
     return this.obterItens().reduce((acc, item) => acc + item.quantidade, 0);
   },
 
-  // ---- UTILITÁRIOS ----
 
   formatarMoeda(valor) {
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   },
 
-  // ---- UI & RENDERIZAÇÃO ----
 
   atualizarInterface() {
-    // Atualiza o Badge do Header
+  r
     const badge = document.getElementById('carrinho-badge');
     if (badge) {
       const qtd = this.totalItens;
       badge.textContent = qtd;
       badge.style.display = qtd > 0 ? 'inline-flex' : 'none';
       
-      // Efeito visual de pulso no badge
       badge.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.2)' }, { transform: 'scale(1)' }], 200);
     }
 
-    // Se estivermos na página de carrinho, re-renderiza a lista
     if (document.getElementById('lista-carrinho')) {
       this.renderizarPaginaCarrinho();
     }
@@ -161,13 +154,10 @@ const Carrinho = {
   }
 };
 
-// Sincroniza abas: se mudar o carrinho em uma aba, a outra atualiza sozinha
 window.addEventListener('storage', (e) => {
   if (e.key === Carrinho.CHAVE) Carrinho.atualizarInterface();
 });
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => Carrinho.atualizarInterface());
 
-// Expõe globalmente para os botões HTML continuarem funcionando
 window.Carrinho = Carrinho;

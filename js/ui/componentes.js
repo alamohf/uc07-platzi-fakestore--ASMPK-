@@ -3,14 +3,12 @@
  * Responsável: Dev 2 (Maria Clara)
  */
 
-/* ------------------------------------------------
-   RENDERIZAÇÃO DE CARD DE PRODUTO
-   ------------------------------------------------ */
+/* RENDERIZAÇÃO DE CARD DE PRODUTO*/
 
 /**
- * Gera o HTML de um card de produto.
- * @param {object} produto - objeto com id, title, price, category, images
- * @returns {string} HTML do card
+ 
+ * @param {object} produto 
+ * @returns {string} 
  */
 function gerarHtmlDoCard(produto) {
   var urlImagem = extrairUrlDaImagem(produto.images);
@@ -66,34 +64,22 @@ function gerarHtmlDoCard(produto) {
   );
 }
 
-/**
- * Extrai e valida a URL da imagem do campo images da API.
- *
- * Problemas conhecidos da API Platzi com imagens:
- *  1. Retorna string JSON em vez de array: '["http://..."]'
- *  2. Retorna URLs com colchetes extras: ["http://..."]
- *  3. Retorna URLs que bloqueiam cross-origin (403)
- *
- * Solução: extrair URL, validar, e usar picsum como fallback.
- */
+
 function extrairUrlDaImagem(images) {
   try {
     var lista = images;
 
-    // Caso 1: string JSON - converte para array
     if (typeof images === "string") {
       lista = JSON.parse(images);
     }
 
     if (Array.isArray(lista) && lista.length > 0) {
-      // Remove colchetes e aspas que a API Platzi ocasionalmente inclui
+    
       var url = lista[0].replace(/[\[\]"]/g, "").trim();
 
-      // Valida se e uma URL http valida
+     
       if (url && url.startsWith("http")) {
-        // Imgur bloqueia hotlink (403) quando o referer nao e imgur.com.
-        // Solucao: usar wsrv.nl como proxy de imagem gratuito.
-        // Ele faz a requisicao pelo servidor dele (sem Referer) e repassa.
+       
         if (url.includes("imgur.com")) {
           return (
             "https://wsrv.nl/?url=" +
@@ -106,17 +92,16 @@ function extrairUrlDaImagem(images) {
     }
   } catch (e) {}
 
-  // Fallback garantido: picsum.photos nao tem restricao de hotlink
+
   return "https://picsum.photos/seed/produto/400/300";
 }
 
-/* NAVEGAÇÃO */
+
 
 function irParaDetalheDoProduto(idProduto) {
   window.location.href = "produto.html?id=" + idProduto;
 }
 
-/* ESTADOS DE TELA */
 
 function exibirCarregando(idContainer) {
   var container = document.getElementById(idContainer);
@@ -159,12 +144,11 @@ function exibirMensagemDeErro(idContainer, mensagem) {
     "</div>";
 }
 
-/* TOAST (notificação rápida) */
 
 /**
- * Exibe uma notificação toast na tela.
+ 
  * @param {string} mensagem
- * @param {string} tipo - 'sucesso', 'erro', 'info', 'alerta'
+ * @param {string} tipo 
  */
 function mostrarToast(mensagem, tipo) {
   tipo = tipo || "info";
@@ -182,12 +166,11 @@ function mostrarToast(mensagem, tipo) {
   }, 3000);
 }
 
-/* MODAL DE CONFIRMAÇÃO*/
 
 /**
- * Abre o modal de confirmação genérico.
- * @param {string} mensagem - texto exibido no modal
- * @param {function} aoConfirmar - função executada ao confirmar
+ 
+ * @param {string} mensagem 
+ * @param {function} aoConfirmar 
  */
 function abrirModalDeConfirmacao(mensagem, aoConfirmar) {
   var modal = document.getElementById("modal-fundo");
@@ -217,12 +200,6 @@ function fecharModalDeConfirmacao() {
   if (modal) modal.classList.remove("aberto");
 }
 
-/* MENU DO USUÁRIO (header) */
-
-/**
- * Atualiza o menu do cabeçalho com base no estado de autenticação.
- * Chamado ao carregar cada página.
- */
 function atualizarMenuDoUsuario() {
   var menu = document.getElementById("menu-usuario");
   if (!menu) return;
@@ -251,8 +228,6 @@ function atualizarMenuDoUsuario() {
   }
 }
 
-/* ATUALIZAR CONTADOR DO CARRINHO*/
-
 function atualizarContadorDoCarrinho() {
   var badge = document.getElementById("carrinho-contador");
   if (!badge) return;
@@ -267,7 +242,6 @@ function atualizarContadorDoCarrinho() {
   }
 }
 
-/*INICIALIZAÇÃO GLOBAL (roda em todas as páginas) */
 
 document.addEventListener("DOMContentLoaded", function () {
   atualizarMenuDoUsuario();

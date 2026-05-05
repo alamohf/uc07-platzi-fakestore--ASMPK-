@@ -11,7 +11,6 @@
  *   GET /categories
  */
 
-/*INICIALIZAÇÃO  */
 
 document.addEventListener('DOMContentLoaded', function() {
   inicializarVitrine();
@@ -23,8 +22,6 @@ async function inicializarVitrine() {
   registrarEventosDaVitrine();
 }
 
-/* CARREGAMENTO DE CATEGORIAS  */
-
 async function carregarCategoriasNoMenu() {
   var lista = document.getElementById('lista-categorias');
   if (!lista) return;
@@ -32,13 +29,12 @@ async function carregarCategoriasNoMenu() {
   try {
     var todasCategorias = await buscarTodasAsCategorias();
 
-    // Filtra categorias invalidas: remove UUIDs e nomes muito longos
-    // A API Platzi tem categorias "lixo" criadas por outros usuarios
+
     var REGEX_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
     var NOMES_VALIDOS = ["Clothes", "Electronics", "Furniture", "Shoes", "Miscellaneous", "Love is light"];
 
     var categorias = todasCategorias.filter(function(c) {
-      // Exclui se nome parece UUID ou contém UUID
+
       if (REGEX_UUID.test(c.name)) return false;
 
       if (c.name.startsWith("Product-")) return false;
@@ -46,8 +42,7 @@ async function carregarCategoriasNoMenu() {
       if (c.name.length > 30) return false;
       return true;
     });
-
-    // Se nao sobrou nada valido, usa todas mesmo
+o
     if (categorias.length === 0) categorias = todasCategorias.slice(0, 6);
 
     atualizarEstadoGlobal({ listaDeCategorias: categorias });
@@ -67,7 +62,6 @@ async function carregarCategoriasNoMenu() {
   }
 }
 
-/* CARREGAMENTO DE PRODUTOS  */
 
 async function carregarProdutosNaVitrine() {
   var grade = document.getElementById('grade-produtos');
@@ -111,7 +105,7 @@ async function carregarProdutosNaVitrine() {
   }
 }
 
-/*  PAGINAÇÃO */
+
 
 function atualizarBotoesDePaginacao(podaVoltar, podaAvancar) {
   var btnAnterior = document.getElementById('btn-anterior');
@@ -153,15 +147,14 @@ function voltarParaPaginaAnterior() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/*  FILTROS  */
+
 
 function filtrarPorCategoria(idCategoria, elementoClicado) {
-  // Atualiza visual da sidebar
+  
   var itens = document.querySelectorAll('.lista-categorias-item');
   itens.forEach(function(item) { item.classList.remove('selecionada'); });
   if (elementoClicado) elementoClicado.classList.add('selecionada');
 
-  // Atualiza estado e recarrega
   var filtros = obterEstadoAtual().filtrosAtivos;
   atualizarEstadoGlobal({
     filtrosAtivos: Object.assign({}, filtros, { idCategoria: idCategoria }),
@@ -186,7 +179,7 @@ function aplicarFiltroDePrecoPelosBotoes() {
 }
 
 function limparFiltrosERecarregar() {
-  // Limpa campos visuais
+
   var minInput = document.getElementById('preco-minimo');
   var maxInput = document.getElementById('preco-maximo');
   var buscaInput = document.getElementById('busca-header');
@@ -194,7 +187,7 @@ function limparFiltrosERecarregar() {
   if (maxInput) maxInput.value = '';
   if (buscaInput) buscaInput.value = '';
 
-  // Desmarca categoria
+
   var itens = document.querySelectorAll('.lista-categorias-item');
   itens.forEach(function(item) { item.classList.remove('selecionada'); });
   var todos = document.querySelector('.lista-categorias-item[data-id=""]');
@@ -204,7 +197,6 @@ function limparFiltrosERecarregar() {
   carregarProdutosNaVitrine();
 }
 
-/* BUSCA  */
 
 var buscarComAtraso = aplicarDebounce(function(textoBuscado) {
   var filtros = obterEstadoAtual().filtrosAtivos;
@@ -215,10 +207,10 @@ var buscarComAtraso = aplicarDebounce(function(textoBuscado) {
   carregarProdutosNaVitrine();
 }, 500);
 
-/* REGISTRO DE EVENTOS  */
+
 
 function registrarEventosDaVitrine() {
-  // Busca no header
+ 
   var inputBusca = document.getElementById('busca-header');
   if (inputBusca) {
     inputBusca.addEventListener('input', function(e) {
@@ -226,24 +218,19 @@ function registrarEventosDaVitrine() {
     });
   }
 
-  // Paginação
+
   var btnAnterior = document.getElementById('btn-anterior');
   var btnProxima  = document.getElementById('btn-proxima');
   if (btnAnterior) btnAnterior.addEventListener('click', voltarParaPaginaAnterior);
   if (btnProxima)  btnProxima.addEventListener('click', irParaProximaPagina);
 
-  // Filtro de preço
+
   var btnFiltrar = document.getElementById('btn-filtrar-preco');
   if (btnFiltrar) btnFiltrar.addEventListener('click', aplicarFiltroDePrecoPelosBotoes);
 
-  // Limpar filtros
   var btnLimpar = document.getElementById('btn-limpar-filtros');
   if (btnLimpar) btnLimpar.addEventListener('click', limparFiltrosERecarregar);
 }
-// TODO: implementar carregarVitrine() 
-// TODO: implementar filtro por categoria
-// TODO: implementar paginação
-// TODO: implementar busca por título
 
 
 
