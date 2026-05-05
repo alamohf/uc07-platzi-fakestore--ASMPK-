@@ -166,7 +166,7 @@ const Carrinho = {
 
 
   atualizarInterface() {
-  r
+  
     const badge = document.getElementById('carrinho-badge');
     if (badge) {
       const qtd = this.totalItens;

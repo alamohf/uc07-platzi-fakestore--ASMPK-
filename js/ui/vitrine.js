@@ -42,7 +42,7 @@ async function carregarCategoriasNoMenu() {
       if (c.name.length > 30) return false;
       return true;
     });
-o
+
     if (categorias.length === 0) categorias = todasCategorias.slice(0, 6);
 
     atualizarEstadoGlobal({ listaDeCategorias: categorias });
