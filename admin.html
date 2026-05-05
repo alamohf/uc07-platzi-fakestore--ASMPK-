@@ -215,17 +215,7 @@
       </div>
     </footer>
 
-    <script>
-      const overlay = document.getElementById("modalOverlay");
-      document
-        .querySelector(".btn-add")
-        .addEventListener("click", () => overlay.classList.add("active"));
-      document
-        .getElementById("btnFechar")
-        .addEventListener("click", () => overlay.classList.remove("active"));
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) overlay.classList.remove("active");
-      });
-    </script>
+    <script src="/js/ui/admin.js"></script>
+    
   </body>
 </html>
