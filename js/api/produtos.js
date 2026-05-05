@@ -20,7 +20,10 @@ async function buscarProdutoPorId(id) {
 }
 
 async function buscarProdutosRelacionados(id) {
-  return await requisicaoAPI('/products/' + id + '/related');
+  // Primeiro buscamos o produto para saber a categoria dele
+  const produto = await buscarProdutoPorId(id);
+  // Depois buscamos outros produtos da mesma categoria
+  return await buscarProdutos({ categoryId: produto.category.id, limit: 4 });
 }
 
 async function criarProduto(dados) {

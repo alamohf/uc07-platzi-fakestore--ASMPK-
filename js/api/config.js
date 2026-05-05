@@ -69,11 +69,20 @@ async function fazerRequisicao(caminho, configuracoes) {
     }
 
     // DELETE retorna 204 sem corpo
+
+      var mensagemErro = corpoErro.message || "Erro " + resposta.status;
+      if (Array.isArray(mensagemErro)) {
+        mensagemErro = mensagemErro.join(", ");
+      }
+      throw new Error(mensagemErro);
+    }
+   
     if (resposta.status === 204) return null;
 
     return await resposta.json();
   } catch (erro) {
     // Log para debugging — remover antes da entrega final (30/04)
+
     console.error(
       "[API]",
       configuracoes.method || "GET",
@@ -86,4 +95,8 @@ async function fazerRequisicao(caminho, configuracoes) {
 }
 
 // Alias para manter compatibilidade com os arquivos da API
+var requisicaoAPI = fazerRequisicao;
+    throw erro;
+  }
+}
 var requisicaoAPI = fazerRequisicao;
