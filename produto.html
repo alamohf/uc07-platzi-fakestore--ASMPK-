@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
+
   <header class="cabecalho">
     <div class="cabecalho-inner">
       <a href="index.html" class="cabecalho-marca">The Precision Merchant</a>
@@ -34,7 +34,7 @@
     </div>
   </header>
 
-  <!-- BREADCRUMB -->
+ 
   <nav class="breadcrumb">
     <a href="index.html">Início</a>
     <span class="sep">›</span>
@@ -43,7 +43,6 @@
     <span id="breadcrumb-produto" class="atual">Carregando...</span>
   </nav>
 
-  <!-- HERO DO PRODUTO (preenchido pelo detalhe.js) -->
   <section id="detalhe-produto" class="produto-hero-section">
     <div class="estado-carregando-produto">
       <span class="material-symbols-outlined estado-icone-girando">autorenew</span>
@@ -51,7 +50,7 @@
     </div>
   </section>
 
-  <!-- ESPECIFICAÇÕES TÉCNICAS (mostrado após carregar) -->
+
   <section class="produto-specs" id="produto-specs" style="display:none">
     <h2 class="specs-titulo">Especificações Técnicas</h2>
     <div class="specs-titulo-decoracao"></div>
@@ -89,7 +88,6 @@
     </div>
   </section>
 
-  <!-- CURADORIA RELACIONADA -->
   <section class="produto-relacionados">
     <div class="relacionados-header">
       <div>
@@ -99,11 +97,11 @@
       <a href="index.html" class="relacionados-link">VER GALERIA →</a>
     </div>
     <div id="grade-relacionados" class="grade-relacionados">
-      <!-- Preenchido pelo detalhe.js -->
+  
     </div>
   </section>
 
-  <!-- RODAPÉ -->
+ 
   <footer class="rodape">
     <div class="rodape-inner">
       <span class="rodape-marca">The Precision Merchant</span>
@@ -117,14 +115,10 @@
     </div>
   </footer>
 
-  <!-- Toast container -->
+
   <div id="toast-container"></div>
 
-  <!--
-    Stubs para dependências ainda não implementadas.
-    exibirToast: chamado por carrinho.js
-    adicionarProdutoAoCarrinho: chamado pelo botão gerado em detalhe.js
-  -->
+ 
   <script>
     function exibirToast(mensagem, tipo) {
       var container = document.getElementById('toast-container');
