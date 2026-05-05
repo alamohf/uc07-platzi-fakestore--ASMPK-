@@ -1,40 +1,102 @@
 /**
- * Configurações da API e tratamento dos erros
+ * config.js — Configurações e helper central de requisições HTTP
+ *
+ * Responsável: Líder Técnico (Álamo)
+ *
+ * REGRA DE OURO: todos os arquivos em /js/api/ usam a função
+ * fazerRequisicao() em vez de fetch() direto. Isso garante:
+ *   1. try/catch em todas as chamadas
+ *   2. Header Authorization automático
+ *   3. Tratamento de 401 (sessão expirada)
+ *   4. URL base centralizada
  */
 
-const BASE_URL = 'https://api.escuelajs.co/api/v1';
+var URL_BASE_API = "https://api.escuelajs.co/api/v1";
 
-async function requisicaoAPI(endpoint, opcoes) {
-  opcoes = opcoes || {};
-  var url = BASE_URL + endpoint;
-  var token = localStorage.getItem('token');
+/**
+ * Faz uma requisição HTTP para a API da Platzi Fake Store.
+ *
+ * @param {string} caminho - parte da URL após a base (ex: '/products')
+ * @param {object} configuracoes - opções do fetch (method, body, headers)
+ * @returns {Promise} dados da resposta em JSON
+ */
+async function fazerRequisicao(caminho, configuracoes) {
+  configuracoes = configuracoes || {};
 
-  var headers = { 'Content-Type': 'application/json' };
-  if (token) { headers['Authorization'] = 'Bearer ' + token; }
-  if (opcoes.headers) { Object.assign(headers, opcoes.headers); }
+  var urlCompleta = URL_BASE_API + caminho;
+  var tokenSalvo = localStorage.getItem("token");
+
+  // Monta os headers da requisição
+  var headers = { "Content-Type": "application/json" };
+
+  // Se o usuário está logado, inclui o token
+  if (tokenSalvo) {
+    headers["Authorization"] = "Bearer " + tokenSalvo;
+  }
+
+  // Permite sobrescrever headers extras se necessário
+  if (configuracoes.headers) {
+    Object.assign(headers, configuracoes.headers);
+  }
 
   try {
-    var resposta = await fetch(url, Object.assign({}, opcoes, { headers: headers }));
+    var resposta = await fetch(
+      urlCompleta,
+      Object.assign({}, configuracoes, {
+        headers: headers,
+      }),
+    );
 
+    // Token expirado ou inválido: limpa sessão e avisa
     if (resposta.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('usuario');
-      throw new Error('Sessão expirada. Faça login novamente.');
+      localStorage.removeItem("token");
+      localStorage.removeItem("dadosUsuario");
+      throw new Error("Sessão expirada. Faça login novamente.");
     }
 
+    // Qualquer outro erro HTTP
     if (!resposta.ok) {
-      var erroBody = {};
-      try { erroBody = await resposta.json(); } catch (e) {}
-      var mensagem = erroBody.message || ('Erro ' + resposta.status);
-      if (Array.isArray(mensagem)) { mensagem = mensagem.join(', '); }
-      throw new Error(mensagem);
+      var corpoErro = {};
+      try {
+        corpoErro = await resposta.json();
+      } catch (e) {}
+
+      var mensagemErro = corpoErro.message || "Erro " + resposta.status;
+      if (Array.isArray(mensagemErro)) {
+        mensagemErro = mensagemErro.join(", ");
+      }
+      throw new Error(mensagemErro);
     }
 
+    // DELETE retorna 204 sem corpo
+
+      var mensagemErro = corpoErro.message || "Erro " + resposta.status;
+      if (Array.isArray(mensagemErro)) {
+        mensagemErro = mensagemErro.join(", ");
+      }
+      throw new Error(mensagemErro);
+    }
+   
     if (resposta.status === 204) return null;
 
     return await resposta.json();
   } catch (erro) {
-    console.error('[API] ' + (opcoes.method || 'GET') + ' ' + endpoint + ':', erro.message);
+    // Log para debugging — remover antes da entrega final (30/04)
+
+    console.error(
+      "[API]",
+      configuracoes.method || "GET",
+      caminho,
+      "→",
+      erro.message,
+    );
+    throw erro; // propaga o erro para a camada de UI tratar
+  }
+}
+
+// Alias para manter compatibilidade com os arquivos da API
+var requisicaoAPI = fazerRequisicao;
     throw erro;
   }
 }
+var requisicaoAPI = fazerRequisicao;

@@ -1,96 +1,143 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detalhes do Produto</title>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto | The Precision Merchant</title>
+  <link rel="stylesheet" href="css/layout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/componentes.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-  </head>
 
-  <body>
-    <!-- CABEÇALHO -->
-    <header class="header">
-      <h1>FakeStore</h1>
-      <nav>
-        <a href="index.html">Vitrine</a>
-        <a href="admin.html">Cadastrar Produto</a>
-        <a href="perfil.html">Minha Conta</a>
+  <header class="cabecalho">
+    <div class="cabecalho-inner">
+      <a href="index.html" class="cabecalho-marca">The Precision Merchant</a>
+      <nav class="cabecalho-nav">
+        <a href="index.html" class="nav-link">Coleções</a>
+        <a href="#" class="nav-link nav-link-ativo">Novidades</a>
+        <a href="#" class="nav-link">Arquivo</a>
       </nav>
-    </header>
+      <div class="cabecalho-acoes">
+        <button class="icone-btn" onclick="window.location.href='carrinho.html'" title="Carrinho">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span id="carrinho-badge" class="carrinho-badge" style="display:none">0</span>
+        </button>
+        <button class="icone-btn" title="Favoritos">
+          <span class="material-symbols-outlined">favorite</span>
+        </button>
+        <button class="icone-btn icone-btn-primario" onclick="window.location.href='login.html'" title="Minha Conta">
+          <span class="material-symbols-outlined">account_circle</span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <main>
-      <!-- VOLTAR -->
-      <section class="voltar">
-        <a href="index.html">← Voltar à Vitrine</a>
-      </section>
+ 
+  <nav class="breadcrumb">
+    <a href="index.html">Início</a>
+    <span class="sep">›</span>
+    <a href="index.html">Coleções</a>
+    <span class="sep">›</span>
+    <span id="breadcrumb-produto" class="atual">Carregando...</span>
+  </nav>
 
-      <!-- DETALHE DO PRODUTO -->
-      <section id="produto-detalhe" class="produto">
-        <p class="loading">Carregando produto...</p>
+  <section id="detalhe-produto" class="produto-hero-section">
+    <div class="estado-carregando-produto">
+      <span class="material-symbols-outlined estado-icone-girando">autorenew</span>
+      <span>Carregando produto...</span>
+    </div>
+  </section>
 
-        <div class="produto-container">
-          <div class="produto-imagem">
-            <img src="" alt="Produto" />
-          </div>
 
-          <!-- INFORMAÇÕES -->
-          <div class="produto-info">
-            <h2 class="produto-titulo">Nome do Produto</h2>
-
-            <p class="preco">R$ 00,00</p>
-
-            <p class="descricao">
-              Descrição do produto aqui (estático por enquanto)
-            </p>
-
-            <span class="categoria">Categoria</span>
-
-            <button class="btn-comprar">Comprar</button>
-          </div>
+  <section class="produto-specs" id="produto-specs" style="display:none">
+    <h2 class="specs-titulo">Especificações Técnicas</h2>
+    <div class="specs-titulo-decoracao"></div>
+    <div class="specs-grid">
+      <div class="specs-coluna-esquerda">
+        <div class="spec-item">
+          <p class="spec-label">Categoria</p>
+          <p class="spec-valor" id="spec-categoria-valor">—</p>
         </div>
-      </section>
-
-      <!-- RELACIONADOS -->
-      <section id="relacionados" class="relacionados">
-        <h2>Produtos Relacionados</h2>
-
-        <!-- PRODUTO NÃO ENCONTRADO -->
-        <p class="empty">Nenhum produto encontrado</p>
-
-        <div class="lista-relacionados">
-          <!-- CARD EXEMPLO -->
-          <div class="card">
-            <img src="foto dos produtos " alt="Produto" />
-            <h3>Produto Exemplo</h3>
-            <p class="preco">R$ 00,00</p>
-            <button>Ver Detalhes</button>
-          </div>
+        <div class="spec-item">
+          <p class="spec-label">Disponibilidade</p>
+          <p class="spec-valor">Em Estoque</p>
+          <p class="spec-detalhe">Entrega em 2-5 dias úteis</p>
         </div>
-      </section>
-    </main>
+      </div>
+      <div class="specs-coluna-direita">
+        <div class="spec-item">
+          <p class="spec-label">Garantia</p>
+          <p class="spec-valor">5 Anos</p>
+          <p class="spec-detalhe">Cobertura total contra defeitos de fabricação</p>
+        </div>
+        <div class="spec-item">
+          <p class="spec-label">Envio</p>
+          <p class="spec-valor">Prioridade Global</p>
+          <p class="spec-detalhe">Frete grátis para compras acima de R$ 300</p>
+        </div>
+      </div>
+      <div class="specs-imagem-card">
+        <img id="specs-imagem" src="" alt="">
+        <div class="specs-imagem-label">
+          <p class="specs-imagem-sublabel">Materialidade</p>
+          <p class="specs-imagem-titulo" id="specs-titulo-material">Precisão Artesanal</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!--LINK DA API -->
+  <section class="produto-relacionados">
+    <div class="relacionados-header">
+      <div>
+        <h2 class="relacionados-titulo">Curadoria Relacionada</h2>
+        <p class="relacionados-subtitulo">Complete seu visual arquitetônico.</p>
+      </div>
+      <a href="index.html" class="relacionados-link">VER GALERIA →</a>
+    </div>
+    <div id="grade-relacionados" class="grade-relacionados">
+  
+    </div>
+  </section>
 
-    <footer class="footer">
-      <p>
-        API base:
-        <a class="api-base-link" href="#" target="_blank"></a>
-      </p>
+ 
+  <footer class="rodape">
+    <div class="rodape-inner">
+      <span class="rodape-marca">The Precision Merchant</span>
+      <div class="rodape-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Serviço</a>
+        <a href="#">Envio</a>
+        <a href="#">Fale Conosco</a>
+      </div>
+      <span class="rodape-copy">© 2024 The Precision Merchant. Todos os direitos reservados.</span>
+    </div>
+  </footer>
 
-      <p>
-        Documentação:
-        <a class="api-doc-link" href="#" target="_blank"></a>
-      </p>
-    </footer>
 
-    <!-- JavaScript-->
+  <div id="toast-container"></div>
 
-    <script src="js/api/config.js"></script>
-    <script src="js/api/produtos.js"></script>
-    <script src="js/ui/componentes.js"></script>
-    <script src="js/ui/detalhe.js"></script>
-  </body>
+ 
+  <script>
+    function exibirToast(mensagem, tipo) {
+      var container = document.getElementById('toast-container');
+      if (!container) return;
+      var toast = document.createElement('div');
+      toast.className = 'toast-mensagem' + (tipo === 'erro' ? ' erro' : tipo === 'info' ? ' info' : '');
+      toast.textContent = mensagem;
+      container.appendChild(toast);
+      setTimeout(function() { toast.remove(); }, 3000);
+    }
+
+    function adicionarProdutoAoCarrinho(id, titulo, preco, imagem) {
+      Carrinho.adicionar({ id: id, title: titulo, price: preco, images: [imagem] });
+    }
+  </script>
+
+  <script src="js/api/config.js"></script>
+  <script src="js/api/produtos.js"></script>
+  <script src="js/ui/carrinho.js"></script>
+  <script src="js/ui/detalhe.js"></script>
+</body>
 </html>

@@ -505,6 +505,39 @@ footer .links a:hover {
   text-align: center;
   margin: 2rem;
   border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #ff0000b4;
+}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+.container-principal {
+    display: flex;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cabecalho-principal {
+    background: #777777;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin: 2rem;
 }
 
 .cabecalho-principal h1 {
@@ -517,12 +550,24 @@ footer .links a:hover {
   flex-shrink: 0;
   padding-right: 30px;
   border-right: 1px solid #e5e5e5;
+    width: 200px;
+    flex-shrink: 0;
+    padding-right: 15px;
+    border-right: 1px solid #e5e5e5;
 }
 
 .barra-lateral h3 {
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 20px;
+}
+
+.faixa-preco {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #888;
 }
 
 .opcoes p {
@@ -563,6 +608,17 @@ footer .links a:hover {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+#produto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card-produto {
+    background: transparent;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-produto:hover {

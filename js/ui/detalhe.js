@@ -1,90 +1,203 @@
-const containerDetalhe = document.querySelector("#produto-detalhe");
-const containerRelacionados = document.querySelector(".lista-relacionados");
+/**
+ * detalhe.js — Tela de detalhe do produto
+ * Responsável: Dev 2 (Maria Clara)
+ *
+ * Endpoints implementados:
+ *   GET /products/:id
+ *   GET /products/:id/related
+ */
 
-// PEGAR ID DA URL
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarPaginaDeDetalhe();
+});
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
 
-// CARREGAR PRODUTO
+function exibirCarregando(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML =
+    '<div class="estado-carregando-produto">' +
+    '<span class="material-symbols-outlined estado-icone-girando">autorenew</span>' +
+    '<span>Carregando...</span>' +
+    '</div>';
+}
 
-async function carregarProduto(id) {
+function exibirMensagemDeErro(containerId, mensagem) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML =
+    '<div class="estado-erro-produto">' +
+    '<span class="material-symbols-outlined" style="font-size:40px;color:var(--erro)">error</span>' +
+    '<p>' + mensagem + '</p>' +
+    '</div>';
+}
+
+
+function extrairUrlDaImagem(images) {
   try {
-    containerDetalhe.innerHTML = renderLoading();
+    var lista = images;
+    if (typeof images === 'string') lista = JSON.parse(images);
+    if (Array.isArray(lista) && lista.length > 0) {
+      var url = lista[0].replace(/[\[\]"]/g, '').trim();
+      if (url && url.startsWith('http')) {
+        if (url.includes('imgur.com')) {
+          return 'https://wsrv.nl/?url=' + encodeURIComponent(url) + '&w=800&h=600&fit=cover';
+        }
+        return url;
+      }
+    }
+  } catch (e) {}
+  return null;
+}
 
-    var produto = await buscarProdutoPorId(id);
-    renderProduto(produto);
+
+async function inicializarPaginaDeDetalhe() {
+  var parametrosUrl = new URLSearchParams(window.location.search);
+  var idProduto = parametrosUrl.get("id");
+
+  if (!idProduto) {
+    exibirMensagemDeErro("detalhe-produto", "ID do produto não informado na URL.");
+    return;
+  }
+
+  await carregarDetalheDoProduto(idProduto);
+  await carregarProdutosRelacionadosNaTela(idProduto);
+}
+
+
+async function carregarDetalheDoProduto(idProduto) {
+  exibirCarregando("detalhe-produto");
+
+  try {
+    var produto = await buscarProdutoPorId(idProduto);
+    renderizarDetalheDoProduto(produto);
   } catch (erro) {
-    containerDetalhe.innerHTML = renderEmpty();
-    mostrarToast("Erro ao carregar produto");
+    exibirMensagemDeErro(
+      "detalhe-produto",
+      "Não foi possível carregar o produto: " + erro.message,
+    );
   }
 }
 
-// RENDER PRODUTO
+function renderizarDetalheDoProduto(produto) {
+  var container = document.getElementById("detalhe-produto");
+  if (!container) return;
 
-function renderProduto(produto) {
-  const imagem = produto.images?.[0] || "https://via.placeholder.com/300";
+  var urlImagem = extrairUrlDaImagem(produto.images) ||
+    'https://picsum.photos/seed/' + produto.id + '/800/600';
+  var urlThumb2 = 'https://picsum.photos/seed/' + produto.id + 'b/400/300';
+  var nomeCategoria = produto.category ? produto.category.name : "Produto";
+  var tituloSeguro = produto.title.replace(/'/g, '’').replace(/"/g, '&quot;');
 
-  containerDetalhe.innerHTML = `
-    <div class="produto-container">
+  document.title = produto.title + ' | The Precision Merchant';
+  var breadcrumb = document.getElementById('breadcrumb-produto');
+  if (breadcrumb) breadcrumb.textContent = produto.title;
 
-      <div class="produto-imagem">
-        <img 
-          src="${imagem}" 
-          alt="${produto.title}"
-          onerror="this.src='https://via.placeholder.com/300'"
-        >
-      </div>
+  container.innerHTML =
+    '<div class="produto-galeria">' +
+    '  <div class="produto-imagem-principal-wrap">' +
+    '    <img src="' + urlImagem + '" alt="' + tituloSeguro + '"' +
+    '         class="produto-imagem-principal"' +
+    '         onerror="this.src=\'https://picsum.photos/seed/' + produto.id + '/800/600\'">' +
+    '  </div>' +
+    '  <div class="produto-thumbnails">' +
+    '    <img src="' + urlImagem + '" alt="Vista 1" class="produto-thumb"' +
+    '         onerror="this.src=\'https://picsum.photos/seed/' + produto.id + '/400/300\'">' +
+    '    <img src="' + urlThumb2 + '" alt="Vista 2" class="produto-thumb">' +
+    '  </div>' +
+    '</div>' +
+    '<div class="produto-info">' +
+    '  <span class="produto-categoria-badge">' + nomeCategoria.toUpperCase() + '</span>' +
+    '  <h1 class="produto-titulo">' + produto.title + '</h1>' +
+    '  <p class="produto-preco">R$ ' + Number(produto.price).toFixed(2) + '</p>' +
+    '  <hr class="produto-divisor">' +
+    '  <p class="produto-historia-label">A HISTÓRIA</p>' +
+    '  <p class="produto-descricao">' + produto.description + '</p>' +
+    '  <div class="produto-acoes">' +
+    '    <button class="btn-adicionar-carrinho"' +
+    '            onclick="adicionarProdutoAoCarrinho(' + produto.id + ', \'' + tituloSeguro + '\', ' + produto.price + ', \'' + urlImagem + '\')">' +
+    '      <span class="material-symbols-outlined">shopping_bag</span>' +
+    '      Adicionar ao Carrinho' +
+    '    </button>' +
+    '    <button class="btn-encontrar-loja" onclick="window.location.href=\'carrinho.html\'">' +
+    '      Ver Carrinho' +
+    '    </button>' +
+    '  </div>' +
+    '  <div class="produto-garantias">' +
+    '    <div class="garantia-item">' +
+    '      <span class="material-symbols-outlined">workspace_premium</span>' +
+    '      <span>5 Anos Garantia</span>' +
+    '    </div>' +
+    '    <div class="garantia-item">' +
+    '      <span class="material-symbols-outlined">local_shipping</span>' +
+    '      <span>Frete Grátis</span>' +
+    '    </div>' +
+    '    <div class="garantia-item">' +
+    '      <span class="material-symbols-outlined">lock</span>' +
+    '      <span>Compra Segura</span>' +
+    '    </div>' +
+    '    <div class="garantia-item">' +
+    '      <span class="material-symbols-outlined">autorenew</span>' +
+    '      <span>Troca Fácil</span>' +
+    '    </div>' +
+    '  </div>' +
+    '</div>';
 
-      <div class="produto-info">
-        <h2 class="produto-titulo">${produto.title}</h2>
-
-        <p class="preco">R$ ${produto.price}</p>
-
-        <p class="descricao">${produto.description}</p>
-
-        <span class="categoria">${produto.category?.name || "Sem categoria"}</span>
-
-        <button class="btn-comprar" onclick="comprarProduto()">
-          Comprar
-        </button>
-      </div>
-
-    </div>
-  `;
+  var specsSection = document.getElementById('produto-specs');
+  if (specsSection) {
+    specsSection.style.display = '';
+    var specCategoria = document.getElementById('spec-categoria-valor');
+    if (specCategoria) specCategoria.textContent = nomeCategoria;
+    var specsImagem = document.getElementById('specs-imagem');
+    if (specsImagem) { specsImagem.src = urlImagem; specsImagem.alt = produto.title; }
+    var specsTitulo = document.getElementById('specs-titulo-material');
+    if (specsTitulo) specsTitulo.textContent = produto.title;
+  }
 }
 
-// AÇÃO DE COMPRA
 
-function comprarProduto() {
-  mostrarToast("Produto adicionado ao carrinho!");
-}
+async function carregarProdutosRelacionadosNaTela(idProduto) {
+  var container = document.getElementById("grade-relacionados");
+  if (!container) return;
 
-// CARREGAR RELACIONADOS
+  exibirCarregando("grade-relacionados");
 
-async function carregarRelacionados(id) {
   try {
-    containerRelacionados.innerHTML = renderLoading();
+    var relacionados = await buscarProdutosRelacionados(idProduto);
 
-    var produtos = await buscarProdutosRelacionados(id);
-    if (!produtos.length) {
-      containerRelacionados.innerHTML = renderEmpty();
+    if (!relacionados || relacionados.length === 0) {
+      container.innerHTML =
+        '<div class="relacionados-vazio">Sem produtos relacionados.<br>Explore a vitrine para mais produtos.</div>';
       return;
     }
 
-    containerRelacionados.innerHTML = produtos.map(renderCard).join("");
+    container.innerHTML = relacionados.slice(0, 4).map(gerarCardRelacionado).join('');
   } catch (erro) {
-    containerRelacionados.innerHTML = renderEmpty();
-    mostrarToast("Erro ao carregar relacionados");
+    container.innerHTML =
+      '<div class="relacionados-vazio">Não foi possível carregar os relacionados.</div>';
   }
 }
 
-// INICIAR
+function gerarCardRelacionado(produto) {
+  var urlImagem = extrairUrlDaImagem(produto.images) ||
+    'https://picsum.photos/seed/' + produto.id + '/400/300';
+  var nomeCategoria = produto.category ? produto.category.name.toUpperCase() : 'PRODUTO';
+  var preco = 'R$ ' + Number(produto.price).toFixed(2);
+  var urlDetalhe = 'produto.html?id=' + produto.id;
+  var titulo = produto.title.replace(/"/g, '&quot;');
 
-if (id) {
-  carregarProduto(id);
-  carregarRelacionados(id);
-} else {
-  containerDetalhe.innerHTML = renderEmpty();
-  mostrarToast("Produto não encontrado");
+  return '<article class="card-relacionado" onclick="window.location.href=\'' + urlDetalhe + '\'">' +
+    '<div class="card-rel-imagem-wrap">' +
+    '<img src="' + urlImagem + '" alt="' + titulo + '" class="card-rel-imagem"' +
+    ' onerror="this.src=\'https://picsum.photos/seed/' + produto.id + '/400/300\'">' +
+    '<button class="card-rel-favorito" onclick="event.stopPropagation()" title="Favoritar">' +
+    '<span class="material-symbols-outlined">favorite</span>' +
+    '</button>' +
+    '</div>' +
+    '<div class="card-rel-info">' +
+    '<h3 class="card-rel-nome">' + produto.title + '</h3>' +
+    '<span class="card-rel-categoria">' + nomeCategoria + '</span>' +
+    '<p class="card-rel-preco">' + preco + '</p>' +
+    '</div>' +
+    '</article>';
 }
