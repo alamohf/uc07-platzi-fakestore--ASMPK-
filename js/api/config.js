@@ -14,10 +14,11 @@
 var URL_BASE_API = "https://api.escuelajs.co/api/v1";
 
 /**
-
- * @param {string} caminho 
- * @param {object} configuracoes 
- * @returns {Promise} 
+ * Faz uma requisição HTTP para a API da Platzi Fake Store.
+ *
+ * @param {string} caminho - parte da URL após a base (ex: '/products')
+ * @param {object} configuracoes - opções do fetch (method, body, headers)
+ * @returns {Promise} dados da resposta em JSON
  */
 async function fazerRequisicao(caminho, configuracoes) {
   configuracoes = configuracoes || {};
@@ -25,15 +26,15 @@ async function fazerRequisicao(caminho, configuracoes) {
   var urlCompleta = URL_BASE_API + caminho;
   var tokenSalvo = localStorage.getItem("token");
 
- 
+  // Monta os headers da requisição
   var headers = { "Content-Type": "application/json" };
 
-  
+  // Se o usuário está logado, inclui o token
   if (tokenSalvo) {
     headers["Authorization"] = "Bearer " + tokenSalvo;
   }
 
-
+  // Permite sobrescrever headers extras se necessário
   if (configuracoes.headers) {
     Object.assign(headers, configuracoes.headers);
   }
@@ -46,12 +47,14 @@ async function fazerRequisicao(caminho, configuracoes) {
       }),
     );
 
+    // Token expirado ou inválido: limpa sessão e avisa
     if (resposta.status === 401) {
       localStorage.removeItem("token");
       localStorage.removeItem("dadosUsuario");
       throw new Error("Sessão expirada. Faça login novamente.");
     }
 
+    // Qualquer outro erro HTTP
     if (!resposta.ok) {
       var corpoErro = {};
       try {
@@ -64,11 +67,21 @@ async function fazerRequisicao(caminho, configuracoes) {
       }
       throw new Error(mensagemErro);
     }
+
+    // DELETE retorna 204 sem corpo
+
+      var mensagemErro = corpoErro.message || "Erro " + resposta.status;
+      if (Array.isArray(mensagemErro)) {
+        mensagemErro = mensagemErro.join(", ");
+      }
+      throw new Error(mensagemErro);
+    }
    
     if (resposta.status === 204) return null;
 
     return await resposta.json();
   } catch (erro) {
+    // Log para debugging — remover antes da entrega final (30/04)
 
     console.error(
       "[API]",
@@ -77,6 +90,12 @@ async function fazerRequisicao(caminho, configuracoes) {
       "→",
       erro.message,
     );
+    throw erro; // propaga o erro para a camada de UI tratar
+  }
+}
+
+// Alias para manter compatibilidade com os arquivos da API
+var requisicaoAPI = fazerRequisicao;
     throw erro;
   }
 }

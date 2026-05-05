@@ -29,21 +29,21 @@ Aplicação em duas camadas: `/js/api` (chamadas HTTP) e `/js/ui`
 ## Endpoints implementados
 | Método | Endpoint | Responsável | Status |
 |--------|----------|-------------|--------|
-| GET | /products | Dev 1 | 🔴 |
-| GET | /products?offset=&limit= | Dev 1 | 🔴 |
-| GET | /products?categoryId= | Dev 1 | 🔴 |
-| GET | /products?title= | Dev 1 | 🔴 |
-| GET | /products?price_min=&price_max= | Dev 1 | 🔴 |
-| GET | /products/:id | Dev 2 | 🔴 |
-| GET | /products/:id/related | Dev 2 | 🔴 |
-| GET | /categories | Dev 1 | 🔴 |
-| POST | /products | Dev 3 | 🔴 |
-| PUT | /products/:id | Dev 3 | 🔴 |
-| DELETE | /products/:id | Dev 3 | 🔴 |
-| POST | /users | Dev 4 | 🔴 |
-| POST | /users/is-available | Dev 4 | 🔴 |
-| POST | /auth/login | Dev 4 | 🔴 |
-| GET | /auth/profile | Dev 4 | 🔴 |
+| GET | /products | Dev 1 | 🟢 |
+| GET | /products?offset=&limit= | Dev 1 | 🟢 |
+| GET | /products?categoryId= | Dev 1 | 🟢 |
+| GET | /products?title= | Dev 1 | 🟢 |
+| GET | /products?price_min=&price_max= | Dev 1 | 🟢 |
+| GET | /products/:id | Dev 2 | 🟢 |
+| GET | /products/:id/related | Dev 2 | 🟢 |
+| GET | /categories | Dev 1 | 🟢 |
+| POST | /products | Dev 3 | 🟢 |
+| PUT | /products/:id | Dev 3 | 🟢 |
+| DELETE | /products/:id | Dev 3 | 🟢 |
+| POST | /users | Dev 4 | 🟢 |
+| POST | /users/is-available | Dev 4 | 🟢 |
+| POST | /auth/login | Dev 4 | 🟢 |
+| GET | /auth/profile | Dev 4 | 🟢 |
 
 Legenda: 🟢 concluído · 🟡 em andamento · 🔴 não iniciado
 
