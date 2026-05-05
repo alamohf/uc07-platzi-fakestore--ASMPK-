@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   inicializarPaginaDeDetalhe();
 });
 
-/* ── Helpers de estado UI ── */
 
 function exibirCarregando(containerId) {
   var el = document.getElementById(containerId);
@@ -33,7 +32,6 @@ function exibirMensagemDeErro(containerId, mensagem) {
     '</div>';
 }
 
-/* ── Extrai a melhor URL de imagem do campo `images` da API ── */
 
 function extrairUrlDaImagem(images) {
   try {
@@ -52,7 +50,6 @@ function extrairUrlDaImagem(images) {
   return null;
 }
 
-/* ── Inicialização ── */
 
 async function inicializarPaginaDeDetalhe() {
   var parametrosUrl = new URLSearchParams(window.location.search);
@@ -67,7 +64,6 @@ async function inicializarPaginaDeDetalhe() {
   await carregarProdutosRelacionadosNaTela(idProduto);
 }
 
-/* ── Detalhe ── */
 
 async function carregarDetalheDoProduto(idProduto) {
   exibirCarregando("detalhe-produto");
@@ -159,7 +155,6 @@ function renderizarDetalheDoProduto(produto) {
   }
 }
 
-/* ── Relacionados ── */
 
 async function carregarProdutosRelacionadosNaTela(idProduto) {
   var container = document.getElementById("grade-relacionados");
