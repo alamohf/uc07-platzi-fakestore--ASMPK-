@@ -84,3 +84,6 @@ async function fazerRequisicao(caminho, configuracoes) {
     throw erro; // propaga o erro para a camada de UI tratar
   }
 }
+
+// Alias para manter compatibilidade com os arquivos da API
+var requisicaoAPI = fazerRequisicao;
