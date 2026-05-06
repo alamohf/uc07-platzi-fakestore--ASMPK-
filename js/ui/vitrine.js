@@ -1,5 +1,5 @@
 let paginaAtual = 1;
-const limit = 6;
+const limit = 4;
 let categoriaAtual = null;
 let buscaAtual = '';
 let precoMinAtual = null;
@@ -12,52 +12,52 @@ const paginaSpan = document.getElementById('indicador-pagina');
 const buscaInput = document.getElementById('input-busca');
 
 function exibirProdutos(produtos) {
-  produtosGrid.innerHTML = '';
+    produtosGrid.innerHTML = '';
 
-  if (!produtos || produtos.length === 0) {
-    produtosGrid.innerHTML = '<div class="vazio">Nenhum produto encontrado</div>';
-    return;
-  }
-
-  produtos.forEach((produto, index) => {
-    const card = document.createElement('article');
-    const produtoDestaque = index === 0 && paginaAtual === 1 && !buscaAtual && produtos.length > 1;
-
-    card.className = produtoDestaque ? 'card-produto destaque' : 'card-produto';
-
-    const imagem = produto.images?.[0] || `https://picsum.photos/300/200?random=${produto.id}`;
-    const categoria = produto.category?.name?.toUpperCase() || 'PRODUTO';
-    const preco = produto.price.toFixed(2);
-
-    if (produtoDestaque) {
-      card.innerHTML = `
-        <span class="destaque-badge">ESCOLHA DO EDITOR</span>
-        <img src="${imagem}" class="imagem-produto"
-          onerror="this.src='https://picsum.photos/300/200?random=${produto.id}'" />
-        <div class="info-produto">
-          <div class="categoria-produto">${categoria}</div>
-          <h3 class="titulo-produto">${produto.title}</h3>
-          <div class="preco-produto">R$ ${preco}</div>
-        </div>
-      `;
-    } else {
-      card.innerHTML = `
-        <img src="${imagem}" class="imagem-produto"
-          onerror="this.src='https://picsum.photos/300/200?random=${produto.id}'" />
-        <div class="info-produto">
-          <div class="categoria-produto">${categoria}</div>
-          <h3 class="titulo-produto">${produto.title}</h3>
-          <div class="preco-produto">R$ ${preco}</div>
-        </div>
-      `;
+    if (!produtos || produtos.length === 0) {
+        produtosGrid.innerHTML = '<div class="vazio">Nenhum produto encontrado</div>';
+        return;
     }
 
-    
-    produtosGrid.appendChild(card);
-    card.addEventListener('click', () => {
-      window.location.href = `produto.html?id=${produto.id}`;
-    });
-  });
+    produtos.forEach((produto, index) => {
+        const card = document.createElement('article');
+        const produtoDestaque = index === 0 && paginaAtual === 1 && !buscaAtual && produtos.length > 1;
+
+        card.className = produtoDestaque ? 'card-produto destaque' : 'card-produto';
+
+        const imagem = produto.images?.[0] || `https://picsum.photos/300/200?random=${produto.id}`;
+        const categoria = produto.category?.name?.toUpperCase() || 'PRODUTO';
+        const preco = produto.price.toFixed(2);
+
+        if (produtoDestaque) {
+            card.innerHTML = `
+                <span class="destaque-badge">ESCOLHA DO EDITOR</span>
+                <img src="${imagem}" class="imagem-produto" onerror="this.src='https://picsum.photos/300/200?random=${produto.id}'">
+                <div class="info-produto">
+                    <div class="categoria-produto">${categoria}</div>
+                    <h3 class="titulo-produto">${produto.title}</h3>
+                    <div class="preco-produto">R$ ${preco}</div>
+                </div>
+            `;
+        } else {
+            card.innerHTML = `
+                <img src="${imagem}" class="imagem-produto" onerror="this.src='https://picsum.photos/300/200?random=${produto.id}'">
+                <div class="info-produto">
+                    <div class="categoria-produto">${categoria}</div>
+                    <h3 class="titulo-produto">${produto.title}</h3>
+                    <div class="preco-produto">R$ ${preco}</div>
+                </div>
+            `;
+        }
+
+        
+        produtosGrid.appendChild(card);
+        
+        
+        card.addEventListener('click', () => {
+            window.location.href = `produto.html?id=${produto.id}`;
+        });
+    }); 
 }
 
 async function carregarVitrine() {
@@ -107,6 +107,7 @@ function configurarFiltroPreco() {
 
   if (!inputMin || !inputMax || !btnFiltrar) return;
 
+
   inputMin.addEventListener('input', () => {
     displayMin.textContent = `R$ ${parseInt(inputMin.value) || 0}`;
   });
@@ -115,9 +116,11 @@ function configurarFiltroPreco() {
     displayMax.textContent = `R$ ${parseInt(inputMax.value) || 5000}`;
   });
 
+
   btnFiltrar.addEventListener('click', () => {
     const min = parseInt(inputMin.value) || 0;
     const max = parseInt(inputMax.value) || 5000;
+
 
     if (min > max) {
       alert('O valor mínimo não pode ser maior que o máximo.');
@@ -135,85 +138,6 @@ function buscarPorTitulo() {
   buscaAtual = buscaInput?.value.trim() || '';
   paginaAtual = 1;
   carregarVitrine();
-}
-
-function configurarFiltroCategoria() {
-    const categorias = document.querySelectorAll('.item-categoria');
-    categorias.forEach(cat => {
-        cat.addEventListener('click', (e) => {
-            e.preventDefault();
-            categorias.forEach(c => c.classList.remove('ativa'));
-            cat.classList.add('ativa');
-            const categoriaId = cat.getAttribute('data-categoria');
-            categoriaAtual = categoriaId ? parseInt(categoriaId) : null;
-            paginaAtual = 1;
-            carregarVitrine();
-        });
-    });
-}
-
-function configurarFiltroPreco() {
-    const sliderMin = document.getElementById('preco-min');
-    const sliderMax = document.getElementById('preco-max');
-    const inputMin = document.getElementById('preco-min-input');
-    const inputMax = document.getElementById('preco-max-input');
-    const displayMin = document.getElementById('preco-min-display');
-    const displayMax = document.getElementById('preco-max-display');
-    const btnFiltrar = document.getElementById('btn-filtrar-preco');
-    if (!sliderMin || !sliderMax) return;
-    function atualizarMin() {
-        let valor = parseInt(sliderMin.value);
-        let max = parseInt(sliderMax.value);
-        if (valor > max) { valor = max; sliderMin.value = valor; }
-        inputMin.value = valor;
-        displayMin.textContent = `R$ ${valor}`;
-    }
-    function atualizarMax() {
-        let valor = parseInt(sliderMax.value);
-        let min = parseInt(sliderMin.value);
-        if (valor < min) { valor = min; sliderMax.value = valor; }
-        inputMax.value = valor;
-        displayMax.textContent = `R$ ${valor}`;
-    }
-    function atualizarInputMin() {
-        let valor = parseInt(inputMin.value) || 0;
-        let max = parseInt(sliderMax.value);
-        if (valor < 0) valor = 0;
-        if (valor > max) valor = max;
-        sliderMin.value = valor;
-        atualizarMin();
-    }
-    function atualizarInputMax() {
-        let valor = parseInt(inputMax.value) || 5000;
-        let min = parseInt(sliderMin.value);
-        if (valor < min) valor = min;
-        if (valor > 5000) valor = 5000;
-        sliderMax.value = valor;
-        atualizarMax();
-    }
-    function aplicarFiltroPreco() {
-        precoMinAtual = parseInt(sliderMin.value);
-        precoMaxAtual = parseInt(sliderMax.value);
-        if (precoMinAtual === 0 && precoMaxAtual === 5000) {
-            precoMinAtual = null;
-            precoMaxAtual = null;
-        }
-        paginaAtual = 1;
-        carregarVitrine();
-    }
-    sliderMin.addEventListener('input', atualizarMin);
-    sliderMax.addEventListener('input', atualizarMax);
-    inputMin.addEventListener('change', atualizarInputMin);
-    inputMax.addEventListener('change', atualizarInputMax);
-    btnFiltrar.addEventListener('click', aplicarFiltroPreco);
-    atualizarMin();
-    atualizarMax();
-}
-
-function buscarPorTitulo() {
-    buscaAtual = buscaInput?.value.trim() || '';
-    paginaAtual = 1;
-    carregarVitrine();
 }
 
 function proximaPagina() {
@@ -247,7 +171,7 @@ async function inicializar() {
   });
 
   document.querySelector('.barra-busca .material-symbols-outlined')
-    ?.addEventListener('click', buscarPorTitulo);
+  ?.addEventListener('click', buscarPorTitulo);
 }
 
 document.addEventListener('DOMContentLoaded', inicializar);
