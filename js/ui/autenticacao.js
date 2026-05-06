@@ -7,6 +7,7 @@ const passwordInput = document.getElementById("password-login");
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     const loginData = {
       email: emailInput.value.trim(),
       password: passwordInput.value.trim(),
@@ -27,10 +28,10 @@ if (loginForm) {
 
       const data = await response.json();
 
-      localStorage.setItem("access_token", data.access_token);
+      // CORRIGIDO: salvo como 'token' para alinhar com autorizacao.js
+      localStorage.setItem("token", data.access_token);
 
       alert("Login realizado com sucesso! Redirecionando...");
-
       window.location.href = "index.html";
     } catch (error) {
       alert(error.message);
