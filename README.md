@@ -42,15 +42,15 @@ Aplicação em duas camadas: `/js/api` (chamadas HTTP) e `/js/ui`
 | DELETE | /products/:id | Dev 3 | 🔴 |
 | POST | /users | Dev 4 | 🟢 |
 | POST | /users/is-available | Dev 4 | 🟢 |
-| POST | /auth/login | Dev 4 | 🟡 |
+| POST | /auth/login | Dev 4 | 🟢 |
 | GET | /auth/profile | Dev 4 | 🟢 |
 
 Legenda: 🟢 concluído · 🟡 em andamento · 🔴 não iniciado
 
 
 ## URL de produção
-https://[usuario].github.io/[repo]
+https://alamohf.github.io/uc07-platzi-fakestore--ASMPK-
 
 ## Screenshots
-(preencher ao final de cada sprint)
+https://stitch.withgoogle.com/projects/12895757087383627795
 
