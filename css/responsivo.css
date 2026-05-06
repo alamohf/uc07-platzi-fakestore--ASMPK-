@@ -1,116 +1,81 @@
+/* ── RESPONSIVO — The Precision Merchant ── */
+
+@media (max-width: 1024px) {
+  .specs-grid { grid-template-columns: 1fr 1fr; }
+  .specs-imagem-card { display: none; }
+  .grade-relacionados { grid-template-columns: repeat(2, 1fr); }
+  .layout-carrinho { grid-template-columns: 1fr; }
+  .resumo-pedido { position: static; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-    max-width: 100%;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-    height: 80vh;
-  }
+  :root { --cabecalho-h: 56px; }
 
-  .cadastro-container {
-    flex-direction: column;
-    max-width: 100%;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-    height: 110vh;
-  }
+  /* Cabeçalho */
+  .cabecalho-inner { padding: 0 16px; gap: 12px; }
+  .cabecalho-nav { display: none; }
+  .cabecalho-marca { font-size: 1.05rem; }
 
-  .panel-visual-cadastro {
-    display: none;
-  }
-
-  .header-links {
-    display: none;
-  }
-
-  .panel-visual {
-    display: none;
-  }
-
-  .panel-form {
-    flex: 1;
-    padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .panel-form-cadastro {
-    flex: 1;
-    padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .header-content {
-    padding: 15px;
-    text-align: center;
-  }
-
-  .portal-tag {
-    display: none;
-  }
-
-  .footer-content {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .input-row {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .input-row input {
-    min-width: 93%;
-  }
-
-  .layout-carrinho {
+  /* Produto hero */
+  .produto-hero-section {
     grid-template-columns: 1fr;
-    padding: 28px 20px 48px;
-    gap: 24px;
+    gap: 32px;
+    padding: 0 16px 40px;
   }
-  .resumo-pedido {
-    position: static;
-  }
+  .produto-titulo { font-size: 1.75rem; }
+  .produto-preco { font-size: 1.5rem; }
 
-  :root {
-    --cabecalho-h: 56px;
-  }
-  .cabecalho-inner {
-    padding: 0 16px;
-    gap: 12px;
-  }
-  .cabecalho-nav {
-    display: none;
-  }
-  .carrinho-titulo-pagina {
-    font-size: 24px;
-  }
-  .carrinho-item {
-    flex-wrap: wrap;
-  }
-  .carrinho-item-acoes {
-    flex-direction: row;
-    align-items: center;
-    min-height: auto;
-  }
-  .rodape {
-    padding: 32px 20px;
-  }
-  .rodape-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  /* Specs */
+  .specs-grid { grid-template-columns: 1fr; }
+  .produto-specs { padding: 40px 16px; }
+
+  /* Relacionados */
+  .produto-relacionados { padding: 40px 16px; }
+  .grade-relacionados { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  /* Rodapé */
+  .rodape,
+  .footer-login,
+  .site-footer { padding: 32px 16px; }
+  .rodape-inner,
+  .footer-content,
+  .footer-container { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+  /* Login / Cadastro */
+  .panel-visual,
+  .panel-visual-cadastro { display: none; }
+  .header-links { display: none; }
+  .header-content { padding: 12px 16px; }
+  .portal-tag { display: none; }
+  .panel-form { padding: 32px 24px; }
+  .panel-form-cadastro { padding: 28px 20px; }
+  .input-row { flex-direction: column; gap: 0; }
+  .footer-links { justify-content: flex-start; flex-wrap: wrap; gap: 16px; }
+  .footer-content { flex-direction: column; align-items: flex-start; }
+
+  /* Carrinho */
+  .layout-carrinho { grid-template-columns: 1fr; padding: 28px 16px 48px; gap: 24px; }
+  .carrinho-titulo-pagina { font-size: 1.5rem; }
+  .carrinho-item { flex-wrap: wrap; }
+  .carrinho-item-acoes { flex-direction: row; align-items: center; min-height: auto; }
+
+  /* Perfil */
+  .main-layout { flex-direction: column; padding: 88px 16px 32px; gap: 16px; }
+  .sidebar { width: 100%; position: static; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .profile-info-wrapper { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+  /* Admin */
+  aside { display: none; }
+  body:has(aside) main,
+  body > main:not(.main-content):not(.layout-carrinho) { margin-left: 0; padding: 24px 16px; }
+}
+
+@media (max-width: 480px) {
+  .grade-relacionados { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .produto-garantias { grid-template-columns: 1fr; }
+  .cadastro-container,
+  .login-container { border-radius: 0; box-shadow: none; }
+  .main-content { padding: 80px 0 32px; }
 }
