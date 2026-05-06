@@ -1,4 +1,4 @@
-# E-commerce Platzi Fake Store — Agência [ASMPK]
+# E-commerce Multistore — Agência [ASMPK]
 
 Aplicação web de e-commerce integrada à Platzi Fake Store API,
 desenvolvida como projeto final da UC07 - SENAC/RN.
