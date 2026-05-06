@@ -26,31 +26,21 @@
           <h1>Multistore</h1>
         </div>
         <nav class="header-links">
-          <a href="#">Coleções</a>
+          <a href="index.html">Coleções</a>
           <a href="#">Novidades</a>
           <a href="#">Arquivo</a>
         </nav>
         <span class="portal-img-cadastro">
-          <a href="">
-            <img
-              src="https://img.icons8.com/pastel_glyph/1200/shopping-bag--v3.jpg"
-              alt="Icone sacola"
-            />
+          <a href="perfil.html">
+            <span class="material-symbols-outlined">account_circle</span>
           </a>
-          <a href="">
-            <img
-              src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-cora%C3%A7%C3%A3o-forma-card%C3%ADaca-de-destaque-favorito-s%C3%ADmbolo-similar-ecommerce-ui-ilustra%C3%A7%C3%A3o-vetorial-pixel-perfeito-264847474.jpg"
-              alt="Icone favorito"
-            />
+          <a href="carrinho.html">
+            <span class="material-symbols-outlined">shopping_cart</span>
           </a>
-          <a href="">
-            <img
-              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-vert.png"
-              alt="Icone perfil"
-            />
+          <a href="#">
+            <span class="material-symbols-outlined">favorite</span>
           </a>
         </span>
-      
     </header>
 
     <main class="main-layout">
@@ -79,6 +69,11 @@
           </a>
         </nav>
         <button class="btn-primary-sidebar">Adicionar Produto</button>
+
+        <!-- ADICIONADO: botão de logout -->
+        <button id="btn-logout" class="btn-secondary" style="margin-top: 12px; width: 100%;">
+          <span class="material-symbols-outlined">logout</span> Sair
+        </button>
       </aside>
 
       <div class="content-area">
@@ -87,7 +82,7 @@
           <div class="profile-info-wrapper">
             <div class="profile-avatar-container">
               <img
-                alt="Perfil do Usuário Admin"
+                alt="Perfil do Usuário"
                 class="profile-img"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIh3bh40A3F5hUt5MsR4bi2g5mSM-izA85Satw3ryuBzwdVFKKPniCdvRwFzyCMKy50JInAwJD7aQAT7J60r_K8I7nAqA3h_Bde-UCNZt_OGswiVeHDsnDNnXPaJkUgciyCSaHlyYsmmRrzWlZGfb0MqU7gmk38_Z4W6qQAzUBE7Zd-ZP0acqv-sibYXFWR4a_ZeyhKtCi5MBC5ElWG1pHksXh9rsOFuLH5kIpVJOV8v2gddtxGz28T7TXbnFt6fLfxpgAWapUD7A4"
               />
@@ -96,12 +91,13 @@
               </div>
             </div>
             <div class="profile-details">
+              <!-- Preenchido dinamicamente pelo perfil.js -->
               <span class="profile-label">Comerciante Verificado</span>
-              <h1>Alexander Vance</h1>
+              <h1>Carregando...</h1>
               <div class="profile-meta">
                 <span
                   ><span class="material-symbols-outlined">mail</span>
-                  alexander.v@precisionmerchant.com</span
+                  carregando...</span
                 >
                 <span class="separator">|</span>
                 <span
@@ -161,9 +157,7 @@
                   <td>
                     <div class="product-cell">
                       <div class="product-icon">
-                        <span class="material-symbols-outlined"
-                          >content_cut</span
-                        >
+                        <span class="material-symbols-outlined">content_cut</span>
                       </div>
                       <div>
                         <div class="product-name">Tailored Merino Coat</div>
@@ -203,18 +197,14 @@
 
         <section class="stats-grid">
           <div class="stat-card bg-high">
-            <span class="material-symbols-outlined stat-icon text-primary"
-              >payments</span
-            >
+            <span class="material-symbols-outlined stat-icon text-primary">payments</span>
             <div class="stat-info">
               <div class="stat-value">$42,300</div>
               <div class="stat-label">Gasto Total</div>
             </div>
           </div>
           <div class="stat-card bg-primary-dark">
-            <span class="material-symbols-outlined stat-icon text-light-green"
-              >military_tech</span
-            >
+            <span class="material-symbols-outlined stat-icon text-light-green">military_tech</span>
             <div class="stat-info">
               <div class="stat-value text-light-green">Platina</div>
               <div class="stat-label text-light-green-dim">Nível de Membro</div>
@@ -245,5 +235,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- ADICIONADO: scripts necessários -->
+    <script src="js/utils/autorizacao.js"></script>
+    <script src="js/ui/perfil.js"></script>
   </body>
 </html>
